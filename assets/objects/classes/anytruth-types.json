@@ -1,0 +1,56 @@
+{
+    "sDTI": "/anytruth/labeldb:1.0",
+    "sId": "${filebasename}",
+    "mTypes": {
+        "undefined": {
+            "sDTI": "/anytruth/labeldb/type:1",
+            "lColor": [
+                0.5,
+                0.5,
+                0.5
+            ]
+        },
+        "cubes": {
+            "sDTI": "/anytruth/labeldb/type:1",
+            "lColor": [
+                1.0,
+                0.03,
+                0.445
+            ]
+        },
+        "cylinders": {
+            "sDTI": "/anytruth/labeldb/type:1",
+            "lColor": [
+                0.032,
+                0.171,
+                1.0
+            ]
+        },
+        "sculptures": {
+            "sDTI": "/anytruth/labeldb/type:1",
+            "lColor": [
+                1.0,
+                0.049,
+                0.873
+            ],
+            "mTypes": {
+                "abstract": {
+                    "sDTI": "/anytruth/labeldb/type:1",
+                    "lColor": [
+                        0.794,
+                        0.483,
+                        1.0
+                    ]
+                },
+                "animals": {
+                    "sDTI": "/anytruth/labeldb/type:1",
+                    "lColor": [
+                        0.92,
+                        0.168,
+                        1.0
+                    ]
+                }
+            }
+        }
+    }
+}

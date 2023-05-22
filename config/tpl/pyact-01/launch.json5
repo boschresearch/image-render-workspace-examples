@@ -1,0 +1,62 @@
+
+// <LICENSE id="CC BY 4.0">
+//
+//   Image-Render Workspace 'test'
+//   Copyright 2022 Robert Bosch GmbH and its subsidiaries
+//   
+//   This work is licensed under the 
+//   
+//       Creative Commons Attribution 4.0 International License.
+//   
+//   To view a copy of this license, visit 
+//       http://creativecommons.org/licenses/by/4.0/ 
+//   or send a letter to 
+//       Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
+//   
+//
+// </LICENSE>
+{
+    sDTI: "/catharsys/launch:3.0",
+    sId: "${filebasename}",
+    sInfo: "Test of template example post-proc action",
+
+    mGlobalArgs: {
+        sDTI: "/catharsys/launch/args:1.1",
+        sTrialFile: "trial",
+        sExecFile: "exec/blender_auto",
+        iFrameFirst: 1,
+        iFrameLast: 1,
+        iFrameStep: 1,
+        iRenderQuality: 4,
+        // sTopFolder: "test",
+        bDoProcess: true,
+        bDoOverwrite: true,
+        bDoStoreProcessData: false
+    },
+
+    mActions: {
+        "render": {
+            sDTI: "/catharsys/launch/action:1.0",
+            sActionDTI: "/catharsys/action/std/blender/render/std:1.0",
+            mConfig: {
+                sDTI: "/catharsys/launch/args:1.1",
+                sInfo: "rendering of rotating cube",
+                iConfigGroups: 1,
+                iFrameGroups: 1
+            }
+        },
+        "pyact": {
+            sDTI: "/catharsys/launch/action:1.0",
+            // This is the DTI of the action to call
+            sActionDTI: "/catharsys/action/_ext_/example:1.0",
+            mConfig: {
+                sDTI: "/catharsys/launch/args:1.1",
+                sInfo: "Perform template example python action",
+                sExecFile: "exec/py_std_v1",
+                iConfigGroups: 1,
+                iFrameGroups: 1
+            }
+        },
+    },
+
+}

@@ -1,0 +1,124 @@
+// <LICENSE id="CC BY 4.0">
+//
+//   Image-Render Workspace 'test'
+//   Copyright 2022 Robert Bosch GmbH and its subsidiaries
+//   
+//   This work is licensed under the 
+//   
+//       Creative Commons Attribution 4.0 International License.
+//   
+//   To view a copy of this license, visit 
+//       http://creativecommons.org/licenses/by/4.0/ 
+//   or send a letter to 
+//       Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
+//   
+//
+// </LICENSE>
+{
+    sDTI: "/catharsys/blender/modify:1.0",
+
+    sId: "${folder}/${filebasename}",
+    
+    // A program modifier allows the execution of modifiers of any type
+    // in a specific order.
+    mProgram: { lModifier: [
+        { sDTI: "/catharsys/blender/generate/in-program:1", mData: { 
+            // 'imported-objects' is available as ISON variable after execution of the generators.
+            // It contains a dictionary of collection name to list of objects generated in 
+            // that collection.
+            "imported-objects": [{ 
+                sDTI: "blender/generate/collection/import/folder-type-hierarchy:1",
+
+                // Switch to enable/disable generator.
+                // This can be helpful for randomized scenarios, where this can be a variable.
+                bEnabled: true,
+
+                // The Blender filename from where to load the collection.
+                // You should always load collections from external Blender files,
+                // as this also imports all dependent assets, like materials, image, textures, etc.
+                sPath: "${path-workspace}/assets/objects/classes",
+
+                // You can define the resultant object name
+                // sObjectName: "MyObject",
+
+                // The collection where the imported objects are placed
+                lCollectionHierarchy: [ "Objects" ],
+
+                // The filename of the per-folder configurations.
+                // This is optional. If it is not specified, per-folder configs are not loaded.
+                // Per-folder configuration files must have the element: 
+                //      sDTI: "/catharsys/blender/generate/collection/import/folder-type-hierarchy/per-folder-args:1.0"
+                sPerFolderConfigFilename: "object-pars", // no extension needed if it is json or json5
+                
+                // A list of regular expressions to include. 
+                // (optional, default=[".+"])
+                // Only paths relative to 'sPath' that match one of the regular expressions are included, 
+                // if they do not also match a regular expression in the exclude list. 
+                // Hint: you can use https://regex101.com to develop regular expressions.
+                // Example 1, Only include sub-paths of "sculptures" and use the full path as type id:
+                // lRePathInclude: ["sculptures\\/.+"],
+
+                // A list of regular expression of folders to exclude. (optional, default=null)
+                // Paths are only accepted if they match one of the include path regular expressions,
+                // and DO NOT match any of the exclude path regular expressions.
+                // Hint: you can use https://regex101.com to develop regular expressions.
+                // Example: Exclude all paths that contain "animals" as a folder in the path.
+                // lRePathExclude: [".+\\/animals(\\/.*)?$"],
+
+                // If you want the imported objects to be spread out, so that they can be viewed easily,
+                // define the following, optional dictionary.
+                mSpreadObjects: {
+                    // Optional flag whether to spread objects, default = True
+                    bEnable: true,
+                    // Origin for object spread
+                    lOrigin: [10, -10, 0],
+                    // Relative deltas between objects. These relate to the size of the largest extend.
+                    // The order is row, column, z
+                    lRelativeDelta: [ 1.5, 0.1, 0.2 ],
+                    // Three lists of three floats defining the direction in the order row, column, z.
+                    // These vectors are normalized before they are used.
+                    lDir: [[0,1,0], [-1,1,0], [0,0,1]],
+                    // Maximal number of objects in a row, before objects are stacked along the z-axis.
+                    iMaxColumnCount: 5,
+                    // Flag whether to use the collection names of the first level as row titles.
+                    bShowRowTitles: true,
+                    // Size of font objects
+                    fRowTitleSize: 1.0,
+                },
+
+                /////////////////////////////////////////////////////////////////////////////////////////////////
+                // All of the following parameters can be overwritten by per-folder configurations.
+
+                // The factor by which the object is scaled
+                fScaleFactor: 1.0,
+
+                // The location where the object is placed
+                lLocation: [0, 0, 0],
+
+                // A dictionary describing how the origin of the imported
+                // object should be adapted. If this dictionary is not present,
+                // the origin is not modified.
+                mSetOrigin: {
+                    // This is an optional flag whether to set the origin
+                    bEnable: true,
+                    // The set-origin type
+                    sType: "ORIGIN_CENTER_OF_VOLUME",
+                    // The set-origin center type
+                    sCenter: "MEDIAN",
+                },
+
+                // A dictionary containing parameters for smoothing the imported object's surface.
+                // If this dictionary is not present, the surface is not smoothed.
+                mSmoothSurface: {
+                    // This is an optional flag whether to smooth the surface
+                    bEnable: true,
+                    // The smoothing uses a voxel remeshing of the object.
+                    // This parameter sets the voxel size to use.
+                    fVoxelSize: 0.1,
+                },
+            }],
+        }},
+    ]}, // Program
+}
+
+

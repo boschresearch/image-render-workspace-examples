@@ -1,0 +1,19 @@
+{
+	sDTI: "/catharsys/manifest/control/loop/list:1.0",
+	sId: "${filebasename}",
+
+	lIndices: "${action:args:lConfigIdxList}",
+	// The iMin, iMax, iStep, refer to the min, max and step
+	// of indices indexing the index list 'lIndices'.
+	// iMin: 0,
+	// iMax: 2,
+	// iStep: 1,
+
+	mIterationConfig: {
+        sId: "$L{%0}",
+
+		__globals__: {
+			iSeed: "$int{$L{%0}}",
+		},
+	},
+}

@@ -1,0 +1,338 @@
+{
+    "sDTI": "/catharsys/action-class/python/manifest-based/job-config:1.0",
+    "sAction": "run",
+    "sActDti": "/catharsys/action/std/blender/render/std:1.0",
+    "mPrjCfg": {
+        "sDTI": "/catharsys/project-class/std/blender/render:1.0",
+        "sLaunchPath": "C:/Users/prc2hi/Documents/10_Code/image-render-setup/repos/image-render-workspace-test/config/vars/test-01",
+        "sLaunchFilePath": "C:/Users/prc2hi/Documents/10_Code/image-render-setup/repos/image-render-workspace-test/config/vars/test-01/launch.json5",
+        "sMainPath": "C:/Users/prc2hi/Documents/10_Code/image-render-setup/repos/image-render-workspace-test",
+        "sConfigPath": "C:/Users/prc2hi/Documents/10_Code/image-render-setup/repos/image-render-workspace-test/config",
+        "sOutputPath": "C:/Users/prc2hi/Documents/10_Code/image-render-setup/repos/image-render-workspace-test/_output",
+        "sProductionPath": "C:/Users/prc2hi/Documents/10_Code/image-render-setup/repos/image-render-workspace-test/_render",
+        "sActProdPath": "C:/Users/prc2hi/Documents/10_Code/image-render-setup/repos/image-render-workspace-test/_render/rq0004",
+        "sConfigFolderName": "config",
+        "sOutputFolderName": "_output",
+        "sProductionFolderName": "_render",
+        "sActProdFolderName": "rq0004",
+        "sLaunchFileBasename": "launch",
+        "sRenderFolderName": "_render"
+    },
+    "iFrameGroups": 1,
+    "iConfigGroups": 1,
+    "sPathJobConfigMain": "C:/Users/prc2hi/Documents/10_Code/image-render-setup/repos/image-render-workspace-test/_render/rq0004\\_temp\\actions\\run\\2023-04-05_16-57-24",
+    "lConfigs": [
+        {
+            "sDTI": "/catharsys/action/config:1.0",
+            "sTrialFile": "trial",
+            "sExecFile": "exec",
+            "iFrameFirst": 0,
+            "iFrameLast": 0,
+            "iFrameStep": 1,
+            "iRenderQuality": 4,
+            "bDoProcess": false,
+            "bDoOverwrite": true,
+            "bDoStoreProcessData": false,
+            "sInfo": "Dummy render action",
+            "iConfigGroups": 1,
+            "iFrameGroups": 1,
+            "iCfgIdx": 0,
+            "iCfgCnt": 2,
+            "mConfig": {
+                "mData": {
+                    "blender/render/output-list:1": [
+                        {
+                            "sDTI": "/catharsys/blender/render/output-list:1",
+                            "sId": "render",
+                            "lSettings": [
+                                {
+                                    "sDTI": "/catharsys/blender/render/settings/render:1",
+                                    "sId": "render",
+                                    "tile_x": 256,
+                                    "tile_y": 128
+                                },
+                                {
+                                    "sDTI": "/catharsys/blender/render/settings/cycles:1",
+                                    "sId": "render",
+                                    "device": "GPU"
+                                }
+                            ],
+                            "lOutputs": [
+                                {
+                                    "sDTI": "/catharsys/blender/render/output/image:1",
+                                    "sId": "render",
+                                    "mCompositor": {
+                                        "sDTI": "/catharsys/blender/compositor:1",
+                                        "sId": "render",
+                                        "lFileOut": [
+                                            {
+                                                "sOutput": "Image",
+                                                "sFolder": "Image",
+                                                "sContentType": "image",
+                                                "mFormat": {
+                                                    "sFileFormat": "PNG",
+                                                    "sColorDepth": "8"
+                                                }
+                                            }
+                                        ]
+                                    }
+                                }
+                            ]
+                        }
+                    ],
+                    "capture/std:1": [
+                        {
+                            "sDTI": "/catharsys/capture/std:1.0",
+                            "sId": "capture",
+                            "dFPS": 30.0
+                        }
+                    ],
+                    "camera-name:1": [
+                        "Camera"
+                    ],
+                    "vars-test:1": [
+                        {
+                            "sDTI": "vars-test:1.0",
+                            "sId": "vars-rt-01",
+                            "_": "vars 1 start",
+                            "valA": [
+                                30.754698657948698,
+                                -41.302321226078256,
+                                -17.67916675916914
+                            ],
+                            "valB": [
+                                16.45475127350239,
+                                63.24328144008762,
+                                23.95540902522316
+                            ],
+                            "_a": "vars 1 end"
+                        }
+                    ]
+                },
+                "lIds": [
+                    "render",
+                    "cap",
+                    "cam",
+                    "vars"
+                ],
+                "lCfgIdFolders": [
+                    "Camera"
+                ],
+                "lCfgIds": [
+                    "render",
+                    "capture",
+                    "Camera",
+                    "vars-rt-01"
+                ],
+                "mCfgIdMeta": {
+                    "render": {
+                        "sDTI": "blender/render/output-list:1",
+                        "iDataListIdx": 0,
+                        "sFolder": null,
+                        "sRelPathCfg": ".",
+                        "iCfgIdx": 0,
+                        "sCfgId": "render"
+                    },
+                    "cap": {
+                        "sDTI": "capture/std:1",
+                        "iDataListIdx": 0,
+                        "sFolder": null,
+                        "sRelPathCfg": ".",
+                        "iCfgIdx": 1,
+                        "sCfgId": "capture"
+                    },
+                    "cam": {
+                        "sDTI": "camera-name:1",
+                        "iDataListIdx": 0,
+                        "sFolder": "Camera",
+                        "sRelPathCfg": "Camera",
+                        "iCfgIdx": 2,
+                        "sCfgId": "Camera"
+                    },
+                    "vars": {
+                        "sDTI": "vars-test:1",
+                        "iDataListIdx": 0,
+                        "sFolder": null,
+                        "sRelPathCfg": "Camera",
+                        "iCfgIdx": 3,
+                        "sCfgId": "vars-rt-01"
+                    }
+                },
+                "sRelPathTrgMain": "vars/test-01/Camera",
+                "dicRelPathTrgAct": {
+                    "run": "vars/test-01/Camera"
+                },
+                "lActions": [
+                    "run"
+                ]
+            },
+            "sPathTrgMain": "C:/Users/prc2hi/Documents/10_Code/image-render-setup/repos/image-render-workspace-test/_render/rq0004\\vars/test-01/Camera",
+            "dicPathTrgAct": {
+                "run": "C:/Users/prc2hi/Documents/10_Code/image-render-setup/repos/image-render-workspace-test/_render/rq0004\\vars/test-01/Camera"
+            },
+            "dicActDtiToName": {
+                "/catharsys/action/std/blender/render/std:1.0": "run"
+            },
+            "lActions": [
+                "run"
+            ],
+            "sJobGroupId": "2023-04-05_16-57-24"
+        },
+        {
+            "sDTI": "/catharsys/action/config:1.0",
+            "sTrialFile": "trial",
+            "sExecFile": "exec",
+            "iFrameFirst": 0,
+            "iFrameLast": 0,
+            "iFrameStep": 1,
+            "iRenderQuality": 4,
+            "bDoProcess": false,
+            "bDoOverwrite": true,
+            "bDoStoreProcessData": false,
+            "sInfo": "Dummy render action",
+            "iConfigGroups": 1,
+            "iFrameGroups": 1,
+            "iCfgIdx": 1,
+            "iCfgCnt": 2,
+            "mConfig": {
+                "mData": {
+                    "blender/render/output-list:1": [
+                        {
+                            "sDTI": "/catharsys/blender/render/output-list:1",
+                            "sId": "render",
+                            "lSettings": [
+                                {
+                                    "sDTI": "/catharsys/blender/render/settings/render:1",
+                                    "sId": "render",
+                                    "tile_x": 256,
+                                    "tile_y": 128
+                                },
+                                {
+                                    "sDTI": "/catharsys/blender/render/settings/cycles:1",
+                                    "sId": "render",
+                                    "device": "GPU"
+                                }
+                            ],
+                            "lOutputs": [
+                                {
+                                    "sDTI": "/catharsys/blender/render/output/image:1",
+                                    "sId": "render",
+                                    "mCompositor": {
+                                        "sDTI": "/catharsys/blender/compositor:1",
+                                        "sId": "render",
+                                        "lFileOut": [
+                                            {
+                                                "sOutput": "Image",
+                                                "sFolder": "Image",
+                                                "sContentType": "image",
+                                                "mFormat": {
+                                                    "sFileFormat": "PNG",
+                                                    "sColorDepth": "8"
+                                                }
+                                            }
+                                        ]
+                                    }
+                                }
+                            ]
+                        }
+                    ],
+                    "capture/std:1": [
+                        {
+                            "sDTI": "/catharsys/capture/std:1.0",
+                            "sId": "capture",
+                            "dFPS": 30.0
+                        }
+                    ],
+                    "camera-name:1": [
+                        "Camera"
+                    ],
+                    "vars-test:1": [
+                        {
+                            "sDTI": "vars-test:1.0",
+                            "sId": "vars-rt-02",
+                            "_": "vars 2 start",
+                            "valA": [
+                                31.546226243125222,
+                                19.02755880177151,
+                                8.555248574048788
+                            ],
+                            "valB": [
+                                16.737899364769728,
+                                -25.57071825853963,
+                                -11.407137955738818
+                            ],
+                            "_a": "vars 2 end"
+                        }
+                    ]
+                },
+                "lIds": [
+                    "render",
+                    "cap",
+                    "cam",
+                    "vars"
+                ],
+                "lCfgIdFolders": [
+                    "Camera"
+                ],
+                "lCfgIds": [
+                    "render",
+                    "capture",
+                    "Camera",
+                    "vars-rt-02"
+                ],
+                "mCfgIdMeta": {
+                    "render": {
+                        "sDTI": "blender/render/output-list:1",
+                        "iDataListIdx": 0,
+                        "sFolder": null,
+                        "sRelPathCfg": ".",
+                        "iCfgIdx": 0,
+                        "sCfgId": "render"
+                    },
+                    "cap": {
+                        "sDTI": "capture/std:1",
+                        "iDataListIdx": 0,
+                        "sFolder": null,
+                        "sRelPathCfg": ".",
+                        "iCfgIdx": 1,
+                        "sCfgId": "capture"
+                    },
+                    "cam": {
+                        "sDTI": "camera-name:1",
+                        "iDataListIdx": 0,
+                        "sFolder": "Camera",
+                        "sRelPathCfg": "Camera",
+                        "iCfgIdx": 2,
+                        "sCfgId": "Camera"
+                    },
+                    "vars": {
+                        "sDTI": "vars-test:1",
+                        "iDataListIdx": 0,
+                        "sFolder": null,
+                        "sRelPathCfg": "Camera",
+                        "iCfgIdx": 3,
+                        "sCfgId": "vars-rt-02"
+                    }
+                },
+                "sRelPathTrgMain": "vars/test-01/Camera",
+                "dicRelPathTrgAct": {
+                    "run": "vars/test-01/Camera"
+                },
+                "lActions": [
+                    "run"
+                ]
+            },
+            "sPathTrgMain": "C:/Users/prc2hi/Documents/10_Code/image-render-setup/repos/image-render-workspace-test/_render/rq0004\\vars/test-01/Camera",
+            "dicPathTrgAct": {
+                "run": "C:/Users/prc2hi/Documents/10_Code/image-render-setup/repos/image-render-workspace-test/_render/rq0004\\vars/test-01/Camera"
+            },
+            "dicActDtiToName": {
+                "/catharsys/action/std/blender/render/std:1.0": "run"
+            },
+            "lActions": [
+                "run"
+            ],
+            "sJobGroupId": "2023-04-05_16-57-24"
+        }
+    ]
+}

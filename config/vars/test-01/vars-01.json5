@@ -1,0 +1,56 @@
+// <LICENSE id="CC BY 4.0">
+//
+//   Image-Render Workspace 'examples'
+//   Copyright 2022 Robert Bosch GmbH and its subsidiaries
+//   
+//   This work is licensed under the 
+//   
+//       Creative Commons Attribution 4.0 International License.
+//   
+//   To view a copy of this license, visit 
+//       http://creativecommons.org/licenses/by/4.0/ 
+//   or send a letter to 
+//       Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
+//   
+//
+// </LICENSE>
+{
+    // // This is the DTI as mentioned in the manifest file
+    sDTI: "vars-test:1.0",
+    sId: "${filebasename}",
+
+    now: "${now}",
+    trial: "${trial}",
+    exec: "${exec}",
+    "trial-id": "${trial-id}",
+    "action:args": "${action:args}",
+    "action:name": "${action:name}",
+    "action:dti": "${action:dti}",
+    "action": "${action}",
+
+    "rel-path-trg": "${rel-path-trg}",
+    "path-trg": "${path-trg}",
+
+    // Access the camera configuration
+    // "id:cam": "${id:cam}",
+    "id:cam:value": "${id:cam:value}",
+
+    // Access the capture configuration
+    // "id:cap": "${id:cap}",
+    "id:cap:value:dFPS": "${id:cap:value:dFPS}",
+
+    // Reference this configuration
+    // "id:@this": "${id:@this}",
+    "id:@this:dti": "${id:@this:dti}",
+    "id:@parent:dti": "${id:@parent:dti}",
+    "id:@child": "${id:@child}",
+
+    // Access the currently processed config
+    // YOU MUST NOT USE ${value} by itself, as it results in an infinite recursion.
+    // "value": "${value}", // DO NOT DO THIS
+    // But you can access values from this config
+    hello: "world",
+    value: "${value}",
+
+    "value:hello": "${value:hello}",
+}

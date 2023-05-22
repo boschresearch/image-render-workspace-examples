@@ -1,0 +1,55 @@
+// <LICENSE id="CC BY 4.0">
+//
+//   Image-Render Workspace 'examples'
+//   Copyright 2022 Robert Bosch GmbH and its subsidiaries
+//   
+//   This work is licensed under the 
+//   
+//       Creative Commons Attribution 4.0 International License.
+//   
+//   To view a copy of this license, visit 
+//       http://creativecommons.org/licenses/by/4.0/ 
+//   or send a letter to 
+//       Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
+//   
+//
+// </LICENSE>
+{
+    sDTI: "/catharsys/blender/modify:1.0",
+
+    sId: "${folder}/${filebasename}",
+    
+    mMaterials: {
+        "Material.Grid": [
+            {
+                sDTI: "blender/modify/material/textures-from-folder:1.0",
+
+                // Path to a folder where the various texture images for
+                // for ONE material are located (like color, normal, roughness, etc.)
+                sTexPath: "${path-workspace}/assets/textures/Planks002",
+
+                // If the names of the texture images files repeat part of the path,
+                // the 'sRePath' variable can be used to pick out part of the sTextPath
+                // with a regular expression. The capture groups can be referenced 
+                // by '\1', '\2', etc. in the node file map.
+                sRePath: ".+/(.+)",
+
+                // This list maps the names (or labels) of image texture nodes in
+                // the material node tree, to filenames in the 'sTexPath' folder.
+                // In this example here, the '\\1' parts of the filenames
+                // are replaced with the last part of the path 'Planks002'.
+                // In a randomization setting, the 'sTexPath' could be randomly 
+                // chosen from a set of paths and the regular expression will
+                // always pick out the last part of the path.
+                lNodeTexFileMap: [
+                    [ "Color", "\\1_1k_Color.png" ],
+                    [ "Roughness", "\\1_1k_Roughness.png" ],
+                    [ "Normal", "\\1_1k_NormalDX.png" ],
+                    [ "Displacement", "\\1_1k_Displacement.png" ],
+                ]
+            }
+        ]    
+    }
+}
+
+

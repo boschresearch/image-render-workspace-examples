@@ -1,0 +1,116 @@
+// <LICENSE id="CC BY 4.0">
+//
+//   Image-Render Workspace 'examples'
+//   Copyright 2022 Robert Bosch GmbH and its subsidiaries
+//   
+//   This work is licensed under the 
+//   
+//       Creative Commons Attribution 4.0 International License.
+//   
+//   To view a copy of this license, visit 
+//       http://creativecommons.org/licenses/by/4.0/ 
+//   or send a letter to 
+//       Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
+//   
+//
+// </LICENSE>
+{
+    sDTI: "/catharsys/blender/modify:1.0",
+
+    sId: "${folder}/${filebasename}",
+    
+    // A program modifier allows the execution of modifiers of any type
+    // in a specific order.
+    mProgram: { lModifier: [
+        { sDTI: "/catharsys/blender/modify/collection:1", mData: { Objects: [
+            {
+                sDTI: "blender/modify/collection/for-each-object:1.0",
+
+                // Apply this modifier at scene initialization and with every frame update
+                lApplyModes: ["INIT", "FRAME_UPDATE"],
+
+                // Only apply modifiers to meshes
+                lObjectTypes: ["MESH"],
+
+                // Regular expression to constrain loop to objects with specific name patterns
+                // sObjectNamePattern: "C.+",
+
+                lModifiers: [
+                    {
+                        sDTI: "blender/modify/object/delta-location:1",
+                        lApplyModes: ["INIT", "FRAME_UPDATE"],
+
+                        // Has to be one of: "km", "m", "mm", "um"
+                        sUnit: "m",
+                        xValue: [0, "$prod{0.25, ${for-each-object:idx}}", 0],
+                    },
+
+                    {
+                        sDTI: "blender/modify/object/delta-rotation-euler:1",
+                        lApplyModes: ["INIT", "FRAME_UPDATE"],
+
+                        sUnit: "deg",
+                        xValue: [0, 0, "$prod{5, $sum{1, ${for-each-object:idx}}}"],
+                    },
+                ]
+            }
+        ]}}, // collection modifier
+
+        // Obtain information about an object with an evaluator
+        { sDTI: "/catharsys/blender/modify/evaluate:1", mData: {
+            // The key of this element defines the variable name where the
+            // evaluator stores the resultant information. 
+            "cylinder-info": {
+                // resultant data of this evaluator is a dictionary
+                // with the following fields:
+                // - "location": a list of the object location coordinates
+                // - "rotation-euler": the Euler rotation values in degrees
+                // - "scale": a list of the three scale values
+                // - "bound-box": a list of the bounding box corner coordinates
+                // - "bound-box-center": a list of the bounding box center location
+
+                sDTI: "/catharsys/blender/modify/evaluate/object/info:1",
+                
+                lApplyModes: ["INIT", "FRAME_UPDATE"],
+                
+                // Name of the object, we want to obtain information from
+                sObjectId: "Cylinder"
+            },
+
+            "camera-info": {
+                sDTI: "/catharsys/blender/modify/evaluate/object/info:1",
+                lApplyModes: ["INIT", "FRAME_UPDATE"],
+                sObjectId: "Orig.CamWorld",
+            }
+        }},
+
+        { sDTI: "/catharsys/blender/modify/evaluate:1", mData: {
+            "rot-z": {
+                // Evaluate the amount we need to rotate about the z-axis
+                // to look at a given position from a given origin.
+                sDTI: "/catharsys/blender/modify/evaluate/look-at/rot-z:1",
+                lApplyModes: ["INIT", "FRAME_UPDATE"],
+                lOrigin: "${camera-info:location}",
+                lTarget: "${cylinder-info:bound-box-center}",
+                // Unit of the resultant data
+                sUnit: "deg"
+            }
+        }},
+
+        { sDTI: "/catharsys/blender/modify/object:1", mData: { "Orig.CamWorld": [
+            {
+                sDTI: "blender/modify/object/rotation-euler:1",
+                lApplyModes: ["INIT", "FRAME_UPDATE"],
+
+                // Has to be one of: "rad", "deg"
+                sUnit: "deg",
+
+                // Rotation vector                
+                xValue: [0, 0, "$sum{-90.0, ${rot-z}}"],
+            }
+        ]}},
+
+    ]}, // Program
+}
+
+

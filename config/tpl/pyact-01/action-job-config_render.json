@@ -1,0 +1,223 @@
+{
+    "sDTI": "/catharsys/action-class/python/manifest-based/job-config:1.0",
+    "sAction": "render",
+    "sActDti": "/catharsys/action/std/blender/render/std:1.0",
+    "mPrjCfg": {
+        "sDTI": "/catharsys/project-class/std/blender/render:1.0",
+        "sLaunchPath": "c:/Users/prc2hi/Documents/10_Code/image-render-setup/repos/image-render-workspace-test/config/anim/test-01",
+        "sLaunchFilePath": "c:/Users/prc2hi/Documents/10_Code/image-render-setup/repos/image-render-workspace-test/config/anim/test-01/launch.json5",
+        "sMainPath": "c:/Users/prc2hi/Documents/10_Code/image-render-setup/repos/image-render-workspace-test",
+        "sConfigPath": "c:/Users/prc2hi/Documents/10_Code/image-render-setup/repos/image-render-workspace-test/config",
+        "sOutputPath": "c:/Users/prc2hi/Documents/10_Code/image-render-setup/repos/image-render-workspace-test/_output",
+        "sProductionPath": "c:/Users/prc2hi/Documents/10_Code/image-render-setup/repos/image-render-workspace-test/_render",
+        "sActProdPath": "c:/Users/prc2hi/Documents/10_Code/image-render-setup/repos/image-render-workspace-test/_render/rq0100",
+        "sConfigFolderName": "config",
+        "sOutputFolderName": "_output",
+        "sProductionFolderName": "_render",
+        "sActProdFolderName": "rq0100",
+        "sLaunchFileBasename": "launch",
+        "sRenderFolderName": "_render"
+    },
+    "iFrameGroups": 1,
+    "iConfigGroups": 0,
+    "sPathJobConfigMain": "c:/Users/prc2hi/Documents/10_Code/image-render-setup/repos/image-render-workspace-test/_render/rq0100\\_temp\\actions\\render\\2022-08-02_15-54-33",
+    "lConfigs": [
+        {
+            "sDTI": "/catharsys/action/config:1.0",
+            "sTrialFile": "trial",
+            "sExecFile": "exec/blender_auto",
+            "iFrameFirst": 0,
+            "iFrameLast": 5,
+            "iFrameStep": 1,
+            "iRenderQuality": 100,
+            "iDoProcess": 1,
+            "iDoOverwrite": 1,
+            "iDoStoreProcessData": 0,
+            "sInfo": "rendering of rotating cube",
+            "iConfigGroups": 1,
+            "iFrameGroups": 1,
+            "iCfgIdx": 0,
+            "iCfgCnt": 1,
+            "mConfig": {
+                "mData": {
+                    "blender/render/output-list:1": [
+                        {
+                            "sDTI": "/catharsys/blender/render/output-list:1",
+                            "sId": "image_v1",
+                            "lSettings": [
+                                {
+                                    "sDTI": "/catharsys/blender/render/settings/render:1",
+                                    "sId": "render_v1",
+                                    "tile_x": 256,
+                                    "tile_y": 128
+                                },
+                                {
+                                    "sDTI": "/catharsys/blender/render/settings/cycles:1",
+                                    "sId": "cycles_v1",
+                                    "device": "GPU"
+                                }
+                            ],
+                            "lOutputs": [
+                                {
+                                    "sDTI": "/catharsys/blender/render/output/image:1",
+                                    "sId": "image_v1",
+                                    "mCompositor": {
+                                        "sDTI": "/catharsys/blender/compositor:1",
+                                        "sId": "image_v1",
+                                        "lFileOut": [
+                                            {
+                                                "sOutput": "Image",
+                                                "sFolder": "Image",
+                                                "sContentType": "image",
+                                                "mFormat": {
+                                                    "sFileFormat": "PNG",
+                                                    "sColorDepth": "8"
+                                                }
+                                            },
+                                            {
+                                                "sOutput": "NoiseImage",
+                                                "sFolder": "ImageNoise",
+                                                "sContentType": "image",
+                                                "mFormat": {
+                                                    "sFileFormat": "PNG",
+                                                    "sColorDepth": "16"
+                                                }
+                                            }
+                                        ]
+                                    }
+                                }
+                            ]
+                        }
+                    ],
+                    "capture/std:1": [
+                        {
+                            "sDTI": "/catharsys/capture/std:1.0",
+                            "sId": "30fps",
+                            "dFPS": 30.0
+                        }
+                    ],
+                    "camera-name:1": [
+                        "Camera"
+                    ],
+                    "blender/modify:1": [
+                        {
+                            "sDTI": "/catharsys/blender/modify:1.0",
+                            "sId": "delta_rot_01",
+                            "mObjects": {
+                                "Camera": [
+                                    {
+                                        "sType": "blender/modify/object/delta-rotation-euler:1",
+                                        "sUnit": "deg",
+                                        "xValue": [
+                                            0,
+                                            10,
+                                            0
+                                        ]
+                                    }
+                                ]
+                            }
+                        }
+                    ],
+                    "blender/animate:1": [
+                        {
+                            "sDTI": "/catharsys/blender/animate:1.0",
+                            "sId": "rot_01",
+                            "mObjects": {
+                                "Cube": [
+                                    {
+                                        "sDTI": "blender/animate/object/rotate/const:1",
+                                        "dDegPerSec": 360,
+                                        "lAxis": [
+                                            0,
+                                            0,
+                                            1
+                                        ]
+                                    }
+                                ]
+                            }
+                        }
+                    ]
+                },
+                "lIds": [
+                    "render",
+                    "cap",
+                    "cam",
+                    "mod",
+                    "anim"
+                ],
+                "lCfgIdFolders": [
+                    "Camera",
+                    "delta_rot_01",
+                    "rot_01"
+                ],
+                "lCfgIds": [
+                    "image_v1",
+                    "30fps",
+                    "Camera",
+                    "delta_rot_01",
+                    "rot_01"
+                ],
+                "mCfgIdMeta": {
+                    "render": {
+                        "sDTI": "blender/render/output-list:1",
+                        "iDataListIdx": 0,
+                        "sFolder": null,
+                        "sRelPathCfg": ".",
+                        "iCfgIdx": 0,
+                        "sCfgId": "image_v1"
+                    },
+                    "cap": {
+                        "sDTI": "capture/std:1",
+                        "iDataListIdx": 0,
+                        "sFolder": null,
+                        "sRelPathCfg": ".",
+                        "iCfgIdx": 1,
+                        "sCfgId": "30fps"
+                    },
+                    "cam": {
+                        "sDTI": "camera-name:1",
+                        "iDataListIdx": 0,
+                        "sFolder": "Camera",
+                        "sRelPathCfg": "Camera",
+                        "iCfgIdx": 2,
+                        "sCfgId": "Camera"
+                    },
+                    "mod": {
+                        "sDTI": "blender/modify:1",
+                        "iDataListIdx": 0,
+                        "sFolder": "delta_rot_01",
+                        "sRelPathCfg": "Camera\\delta_rot_01",
+                        "iCfgIdx": 3,
+                        "sCfgId": "delta_rot_01"
+                    },
+                    "anim": {
+                        "sDTI": "blender/animate:1",
+                        "iDataListIdx": 0,
+                        "sFolder": "rot_01",
+                        "sRelPathCfg": "Camera\\delta_rot_01\\rot_01",
+                        "iCfgIdx": 4,
+                        "sCfgId": "rot_01"
+                    }
+                },
+                "sRelPathTrgMain": "anim/test-01/Camera/delta_rot_01/rot_01",
+                "dicRelPathTrgAct": {
+                    "render": "anim/test-01/Camera/delta_rot_01/rot_01"
+                },
+                "lActions": [
+                    "render"
+                ]
+            },
+            "sPathTrgMain": "c:/Users/prc2hi/Documents/10_Code/image-render-setup/repos/image-render-workspace-test/_render/rq0100\\anim/test-01/Camera/delta_rot_01/rot_01",
+            "dicPathTrgAct": {
+                "render": "c:/Users/prc2hi/Documents/10_Code/image-render-setup/repos/image-render-workspace-test/_render/rq0100\\anim/test-01/Camera/delta_rot_01/rot_01"
+            },
+            "dicActDtiToName": {
+                "/catharsys/action/std/blender/render/std:1.0": "render"
+            },
+            "lActions": [
+                "render"
+            ],
+            "sJobGroupId": "2022-08-02_15-54-33"
+        }
+    ]
+}

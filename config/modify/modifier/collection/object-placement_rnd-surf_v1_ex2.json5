@@ -1,0 +1,203 @@
+// <LICENSE id="CC BY 4.0">
+//
+//   Image-Render Workspace 'examples'
+//   Copyright 2022 Robert Bosch GmbH and its subsidiaries
+//   
+//   This work is licensed under the 
+//   
+//       Creative Commons Attribution 4.0 International License.
+//   
+//   To view a copy of this license, visit 
+//       http://creativecommons.org/licenses/by/4.0/ 
+//   or send a letter to 
+//       Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
+//   
+//
+// </LICENSE>
+
+// Modifier object-placement/rnd-surf
+//
+// Place all objects and/or child collections in a given collection randomly onto surface.
+// This can be specialized with a number of parameters:
+// - Only place objects in the field of view of a given camera
+// - Set a minimal/maximal distance from a camera
+// - Set a minimal angular distance between objects as seen from a camera
+// - Use a minimal and/or maximal distance between objects
+// - Ensure that the object's bounding boxes do not overlap
+//
+//    IMPORTANT: 
+//         - At most one object will be placed on each target object face. That is, if the
+//           target object is a single plane, only one object can be placed. You can use a subdivision
+//           modifier to increase the number of faces to the desired resolution. 
+//         - Do not use this function to distribute very large number of objects on a surface,
+//           like grass. Internally, each instance is created as a linked object and not as
+//           a Blender internal instance.
+//
+// sTargetObject (str):
+//     The name of the target object. The collection objects will be placed on the surface
+//     of this object.
+
+// lTargetObjects (list, optional):
+//     A list of target objects where to place source objects. Takes precedence over sTargetObject,
+//     if both are specified.
+
+// sVertexGroup (str, optional):
+//     The name of the vertex group used for weighting the placement.
+//     If lTargetObjects is specified and no lVertexGroups, but sVertexGroup,
+//     the sVertexGroup name is used for all target objects.
+
+// lVertexGroups (list[str], optional):
+//     A list of vertex groups, one per target object, that contain the respective
+//     vertex weighting.
+
+// fMinimalDistance (float, optional):
+//     Minimal distance between objects. Defaults to zero.
+
+// fMaximalDistance (float, optional):
+//     Maximal distance between objects. Defaults to no max. distance.
+
+// lObjectTypes (list(str), optional):
+//     List of object type strings to place.
+
+// iObjectInstanceCount (int, optional):
+//     Number of object instances to create. If set to zero (default), then each
+//     object is used once.
+
+// sInstanceCollectionName (str, optional, default=None):
+//     Name of the newly created collection, if 'iObjectInstanceCount' is given.
+
+// lOffset (list(float), optional):
+//     Position offset for evaluated positions.
+
+// iSeed (int, optional):
+//     Random seed for placement of objects. Default is zero.
+
+// fMinHorizViewAngleSep_deg (float, optional, default=0.0):
+//     The minimal horizontal view angle separation in degrees of the generated points.
+
+// bUseCameraFov (bool, optional, default=false):
+//      Constrains points to the camera field-of-view, if set to true.
+//      If the camera has been created with AnyCam, the FoV is obtained from the
+//      AnyCam meta information for non-standard cameras.
+
+// lCamDistRange (list[float], optional, default=[0, inf]):
+//     Minimal and maximal distance from camera that are allowed.
+
+// lCamFovBorderAngle_deg (list[float], optional, default=[0.0, 0.0]):
+//      Reduces the camera field of view used, by the given amounts for horizontal
+//      and vertical FoV. Only used when 'bUseCameraFov' is true.
+
+// bUseBoundBox (bool, optional, default=false):
+//     If set to true, uses the bounding boxes of the objects passed in "lObjects"
+//     to determine their minimal distance. Defaults to false.
+
+// xInstanceOrigin (list[float] or str, optional, default=[0,0,-0.5]):
+//     If it is a list it gives the origin of the instances' bounding box relative to their centers.
+//         For example, [0,0,-0.5] is the center of the bottom plane,
+//         and [0,0,0] is the center of the bounding box.
+//     If it is a string it can be one of the following:
+//         - "ORIG": uses the instance's origin for placement and not the bounding box
+
+// sInstanceType (str, optional, default=CHILD_OBJ):
+//     Determines how the collection "_clnX" is instantiated.
+//     Has to be one of the following values: [OBJECT|CHILD_OBJ|CHILD_CLN]
+//     - OBJECT: The whole collection is regarded as one object.
+//     - CHILD_OBJ: All objects in the collection and all objects in its' child collections are separate objects.
+//     - CHILD_CLN: All objects in the collection and all child collections are separate objects.
+//                     That is, the child collections are regarded as single objects.
+
+// lObstacles (list[dict], optional, default=None):
+//     Only used when bUseBoundBox is true. List of objects or collections of objects whose bounding boxes
+//     will not be intersected by the object's bounding boxes. Each element in the list
+//     must have one of the following element types:
+//     { "sCln": "[Collection name]", "sInstType": "[OBJECT|CHILD_OBJ|CHILD_CLN]" }
+//     { "sObj": "[Object name]"}
+//     'sInstType' values have the following meanings if 'sName' referes to a collection:
+//     - OBJECT: The whole collection is regarded as one object.
+//     - CHILD_OBJ: All objects in the collection and all objects in its' child collections are separate objects.
+//     - CHILD_CLN: All objects in the collection and all child collections are separate objects.
+//                     That is, the child collections are regarded as single objects.
+
+// iMaxTrials (int, optional, default=20):
+//     Number of times a random point is generated and tested as a valid position.
+//     If, after this number of trials no valid point is found, the respective
+//     object is not moved.
+
+// lInstRndRotEulerRange_deg (list[list[float]], optional, default=None):
+//     Random instance rotation Euler Angle ranges. List of three
+//     lists of two values, giving the rotation range per Euler angle
+//     in degrees.
+
+// lInstRndRotOriginOffset (list[float], optional, default=[0,0,-0.5]):
+//     Rotation origin offset relative to bounding box center of instances,
+//     along bounding box axes. The bounding box center is [0,0,0], the center
+//     of the bottom (-Z) bounding box plane is [0,0,-0.5].
+
+// bInstDrawBoundingBoxes (bool, optional, default=False):
+//      Generates bounding boxes as hidden objects for each instance if true.
+//      Useful for debugging.
+
+// bObstDrawBoundingBoxes (bool, optional, default=False):
+//      Generates bounding boxes as hidden object for each obstacle if true.
+
+{
+    sDTI: "/catharsys/blender/modify:1.0",
+
+    sId: "${folder}/${filebasename}",
+    
+    mCollections: {
+        "For Instancing": [
+            {
+                sDTI: "blender/modify/collection/object-placement/rnd-surf:1.0",
+
+                iSeed: 0,
+                sTargetObject: "Grid",
+
+                // If no object instance count is given,
+                // each object in the collection "Objects" is
+                // instanced exactly once.
+                iObjectInstanceCount: 10,
+
+                // // In this mode the whole collection is regarded
+                // // as a single object.
+                // sInstanceType: "OBJECT",
+
+                // // In this mode, all objects are regarded separately.
+                // // Also the objects in the child collection "My Object 1"
+                // // are regarded as separate obejcts. 
+                // sInstanceType: "CHILD_OBJ",
+
+                // // In this mode, the child collection "My Object 1"
+                // // is regarded as one object.
+                sInstanceType: "CHILD_CLN",
+
+                xInstanceOrigin: [0, 0, -0.5],
+
+                // Instead of using a minimal distance of the objects,
+                // use their bounding boxes to ensure that they do not
+                // overlap.
+                bUseBoundBox: true,
+
+                lObstacles: [
+                    { sCln: "Objects", sInstType: "CHILD_OBJ" },
+                ],
+
+                // Randomly rotate instances about the world z-axis.
+                lInstRndRotEulerRange_deg: [[0,0], [0,0], [-180, 180]],
+
+                bUseCameraFov: true,
+                // fMinHorizViewAngleSep_deg: 10,
+                lCamFovBorderAngle_deg: [1, 1], 
+                
+                // Generate bounding boxes in the scene for debugging.
+                // These boxes are display as wireframe in the viewport
+                // and are not rendered.
+                bInstDrawBoundingBoxes: true,
+
+                bObstDrawBoundingBoxes: true
+            }
+        ]    
+    }
+}
+
+

@@ -1,0 +1,79 @@
+
+// <LICENSE id="CC BY 4.0">
+//
+//   Image-Render Workspace 'examples'
+//   Copyright 2022 Robert Bosch GmbH and its subsidiaries
+//   
+//   This work is licensed under the 
+//   
+//       Creative Commons Attribution 4.0 International License.
+//   
+//   To view a copy of this license, visit 
+//       http://creativecommons.org/licenses/by/4.0/ 
+//   or send a letter to 
+//       Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
+//   
+//
+// </LICENSE>
+{
+    sDTI: "/catharsys/trial:1.0",
+    sId: "${rel-path-config}",
+    
+    sManifestFile: "manifest",
+    mConfigs: {
+        render: ["render"],
+        cap: ["capture"],
+        cam: [ 
+            "Cam.Pin.Std.53deg_FHD",
+            // "Camera", 
+        ],
+        mod: [ 
+            // // Object
+            // "modifier/object/none",
+            // "modifier/object/delta-rotation-euler",
+            // "modifier/object/rotation-euler",
+            // "modifier/object/delta-location",
+            // "modifier/object/location",
+            // "modifier/object/snap-to-surf",
+            // "modifier/object/enable",
+            // "modifier/object/parent",
+            // "modifier/object/attributes",
+            // "modifier/object/properties",
+            // "modifier/object/action",
+            // "modifier/object/enable-if_bound-box",
+
+            // // Material
+            // "modifier/material/textures-from-folder",
+            // "modifier/material/swap",
+            // "modifier/material/node-values",
+
+            // // Collection
+            // "modifier/collection/object-placement_rnd-surf_v1_ex1",
+            // "modifier/collection/object-placement_rnd-surf_v1_ex2",
+            "modifier/collection/object-placement_rnd-surf_v2_ex1",
+            // "modifier/collection/for-each-object",
+            // "modifier/collection/anytruth_labeltype",
+
+            // // Scene
+            // "modifier/scene/set-world",
+
+            // // Program
+            // "modifier/program/ex1",
+            // "modifier/program/py-ex1",
+
+            // // Rigid Body
+            // "modifier/rigidbody/ex1",
+
+            // // Generator
+            // "modifier/generate/import-object",
+            // "modifier/generate/import-type-hierarchy",
+        ],
+    },
+
+    mBlender: {
+        sDTI: "/catharsys/trial/blender:1.0",
+        sBlenderFile: "${path-workspace}/blend/Modify.blend",
+    }
+}
+
+

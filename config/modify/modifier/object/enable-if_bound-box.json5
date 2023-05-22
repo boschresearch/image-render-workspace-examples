@@ -1,0 +1,56 @@
+// <LICENSE id="CC BY 4.0">
+//
+//   Image-Render Workspace 'examples'
+//   Copyright 2022 Robert Bosch GmbH and its subsidiaries
+//   
+//   This work is licensed under the 
+//   
+//       Creative Commons Attribution 4.0 International License.
+//   
+//   To view a copy of this license, visit 
+//       http://creativecommons.org/licenses/by/4.0/ 
+//   or send a letter to 
+//       Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
+//   
+//
+// </LICENSE>
+{
+    sDTI: "/catharsys/blender/modify:1.0",
+
+    sId: "${folder}/${filebasename}",
+    
+    mCollections: {
+        // For each of the objects in the collection 'Object', test whether they are inside the bounding box
+        // of the 'Grid' object.
+        Objects: [
+            {
+                sDTI: "blender/modify/collection/for-each-object:1.0",
+
+                lObjectTypes: ["MESH"],
+                // sObjectNamePattern: "C.+",
+
+                lModifiers: [{
+                    // Enable if object is inside Target object's bounding box.
+                    // Available arguments:
+                    // sTarget: string
+                    //     The name of the target object, whose bounding box will be used.
+                    // bCompoundTarget: bool, optional
+                    //     If set to true, the bounding box is evaluated for the object sTarget and all its' children.
+                    //     If set to false, only the mesh of sTarget itself without children is used.
+                    // fBorder: float, optional
+                    //     Size of border around target object's bounding box. Default is 0.0.
+                    // sRelation: string, optional
+                    //     The relation to test. Must be one of ["INSIDE", "OUTSIDE", "INTERSECT"]. Default is "INSIDE".
+
+                    sDTI: "/catharsys/blender/modify/object/enable-if/bound-box:1.0",
+                    sTarget: "Grid",
+                    bCompoundTarget: false,
+                    sRelation: "INSIDE",
+                    fBorder: "0.001",
+                }]
+            }
+        ]    
+    }
+}
+
+

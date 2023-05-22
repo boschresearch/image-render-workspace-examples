@@ -1,0 +1,67 @@
+// <LICENSE id="CC BY 4.0">
+//
+//   Image-Render Workspace 'examples'
+//   Copyright 2022 Robert Bosch GmbH and its subsidiaries
+//   
+//   This work is licensed under the 
+//   
+//       Creative Commons Attribution 4.0 International License.
+//   
+//   To view a copy of this license, visit 
+//       http://creativecommons.org/licenses/by/4.0/ 
+//   or send a letter to 
+//       Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
+//   
+//
+// </LICENSE>
+{
+    sDTI: "/catharsys/blender/modify:1.0",
+
+    sId: "${folder}/${filebasename}",
+    
+    mObjects: {
+        Cube: [
+            {
+                sDTI: "blender/modify/object/action:2.0",
+
+                // filename of the blender file
+                sBlenderFilename: "${path-workspace}/blend/Animation_01.blend",
+
+                // name of the action in the blender file
+                sActionName: "CubeAction.002",
+
+                // The original fps the action was designed for. The modifier automatically 
+                // scales the action to fit the target capture and scene framerates.
+                // Default, action is not scaled.
+                fActionFps: 30.0,  
+
+                // Additional animation scale. Default, is unity.
+                fActionScale: 1.0,
+
+                // If set 'true' the action is reversed.
+                bActionReverse: false,
+
+                // Everytime the action needs to be repeated, it's direction is reversed.
+                // In this way, any action can be repeated smoothly.
+                bActionToggleReverse: true,
+
+                // relative action start. Default zero.
+                // Determines which frame of the action is placed at scene frame zero or the
+                // the scene frame given as the first element of 'lTargetFrameRange'.
+                // For example, value '0.5' places the central keyframe of the action
+                // at scene frame zero, if 'lTargetFrameRange' is not specified.
+                fStartRelative: 0.0,
+
+                // ensures that there is an active NLA track within this target frame range.
+                // If the action is too short, it is repeated so that at least this
+                // frame range is covered. Default is that the action is run exactly once.
+                // Note that, the target frames may differ from scene frames, depending
+                // on the capture configuration and scene fps. This is accounted for
+                // automatically in this modifier.
+                lTargetFrameRange: [0, 100],
+            }
+        ]    
+    }
+}
+
+

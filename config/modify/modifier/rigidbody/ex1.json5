@@ -1,0 +1,159 @@
+// <LICENSE id="CC BY 4.0">
+//
+//   Image-Render Workspace 'examples'
+//   Copyright 2022 Robert Bosch GmbH and its subsidiaries
+//   
+//   This work is licensed under the 
+//   
+//       Creative Commons Attribution 4.0 International License.
+//   
+//   To view a copy of this license, visit 
+//       http://creativecommons.org/licenses/by/4.0/ 
+//   or send a letter to 
+//       Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
+//   
+//
+// </LICENSE>
+//
+// NOTE
+// Use this modifier with 'bDoStoreProcessData' set to true in the launch file,
+// and then run the animation in Blender using the generated Blender file.
+//
+{
+    sDTI: "/catharsys/blender/modify:1.0",
+
+    sId: "${folder}/${filebasename}",
+    
+    // A program modifier allows the execution of modifiers of any type
+    // in a specific order.
+    mProgram: { lModifier: [
+
+        /////////////////////////////////////////////////////////////////////////////////
+        // Clear the rigid body world or create a new one.
+        // The modifier has no additional arguments.
+        { sDTI: "/catharsys/blender/modify/scene:1", mData: { 
+            Scene: [
+                {
+                    sDTI: "/catharsys/blender/modify/scene/rigidbody/clear:1.0",
+                }
+            ]
+        }},
+
+        /////////////////////////////////////////////////////////////////////////////////
+        // Make mesh objects to rigid bodies
+        // The 'rigidbody/add' modifier has the following parameters:
+        // sType : string
+        //     The rigid body object type. Must be "ACTIVE" or "PASSIVE".
+        // fMass: float
+        //     The mass of the object in kg.
+        // sMeshSource: string
+        //     Must be one of "BASE", "DEFORM" or "FINAL"
+        // sCollisionShape: string
+        //     Must be one of "CONVEX_HULL", "MESH", "SPHERE".
+        // bEnabled: bool
+        //     Enable/disable rigid body object.
+        // bKinematic: bool
+        //     If the object is animated, set this to true.
+        // bUseDeform: bool
+        //     If the object is deformed by a modifier, set this to true.
+        // fFriction: float
+        //     Friction of object surface
+        // fRestitution: float
+        //     Bounciness
+        // bUseMargin: bool
+        //     Use the given collision margin
+        // fCollisionMargin: float
+        //     The collision margin in Blender units
+        // fLinearDamping: float
+        //     Linear damping of movement
+        // fAngularDamping: float
+        //     Angluar damping of movement
+        // lCollectionIndices: list[int]
+        //     List of rigid body collision collection indices in range [0, 19], to which this object belongs.
+
+        { sDTI: "/catharsys/blender/modify/object:1", mData: { 
+            "Cube": [
+                // Move object a bit to the side, so that it does not stand
+                // perfectly on the tip of the cylinder.
+                {
+                    sDTI: "blender/modify/object/delta-location:1",
+                    // Has to be one of: "km", "m", "mm", "um"
+                    sUnit: "m",
+                    xValue: [-0.01, 0.01, 0],
+                },
+                // Now make the cube object an active rigid body object.
+                {
+                    sDTI: "/catharsys/blender/modify/object/rigidbody/add:1.0",
+                    sType: "ACTIVE",
+                    fMass: 0.5,
+                    bUseMargin: true,
+                    fCollisionMargin: 0.001,
+                    lCollectionIndices: [0],
+                    fRestitution: 0.8, 
+                },
+            ],
+            "Cone": [{
+                sDTI: "/catharsys/blender/modify/object/rigidbody/add:1.0",
+                sType: "PASSIVE",
+                sCollisionShape: "MESH",
+                bUseMargin: true,
+                fCollisionMargin: 0.001,
+                lCollectionIndices: [0],
+                fRestitution: 1.0, 
+            }],
+            "Cylinder": [{
+                sDTI: "/catharsys/blender/modify/object/rigidbody/add:1.0",
+                sType: "PASSIVE",
+                sCollisionShape: "MESH",
+                bUseMargin: true,
+                fCollisionMargin: 0.001,
+                lCollectionIndices: [0],
+            }],
+            "Grid": [{
+                sDTI: "/catharsys/blender/modify/object/rigidbody/add:1.0",
+                sType: "PASSIVE",
+                sCollisionShape: "MESH",
+                bUseMargin: true,
+                fCollisionMargin: 0.001,
+                lCollectionIndices: [0],
+                fRestitution: 1.0, 
+            }],
+        }},
+
+        /////////////////////////////////////////////////////////////////////////////////
+        // Bake the rigid body physics for a frame range.
+        // If this modifier is executed at the initialization stage (default), then
+        // you can directly set the frame to render in the launch file. If it is
+        // in the range of the bake, the objects will be positioned as in the simulation.
+        //
+        // The modifier has the following arguments:
+        // iFrameStart: int
+        //     The first frame for baking.
+        // iFrameEnd: int
+        //     The last frame for baking.
+        // fTimeScale: float
+        //     Time scale of simulation
+        // iSubStepsPerFrame: int
+        //     Number of sub-steps calculated per frame
+        // iSolverIterations: int
+        //     Number of iteration for solver
+
+        { sDTI: "/catharsys/blender/modify/scene:1", mData: { 
+            Scene: [
+                {
+                    sDTI: "/catharsys/blender/modify/scene/rigidbody/bake:1.0",
+                    iFrameStart: 1,
+                    iFrameEnd: 200,
+                    fTimeScale: 1.0,
+                    // With default sub-steps per frame of 10, physics is strange.
+                    // Must be a numerical instability in Blender physics.
+                    iSubStepsPerFrame: 5,
+                    iSolverIterations: 10,
+                }
+            ]
+        }},
+
+    ]}, // Program
+}
+
+

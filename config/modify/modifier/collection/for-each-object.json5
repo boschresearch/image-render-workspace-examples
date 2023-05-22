@@ -1,0 +1,59 @@
+// <LICENSE id="CC BY 4.0">
+//
+//   Image-Render Workspace 'examples'
+//   Copyright 2022 Robert Bosch GmbH and its subsidiaries
+//   
+//   This work is licensed under the 
+//   
+//       Creative Commons Attribution 4.0 International License.
+//   
+//   To view a copy of this license, visit 
+//       http://creativecommons.org/licenses/by/4.0/ 
+//   or send a letter to 
+//       Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
+//   
+//
+// </LICENSE>
+
+// "for-each-object" modifier
+// Applies a list of modifiers to each object in a collection.
+// It makes also a dictionary available that can be accessed from the modifier configurations
+// via "${for-each-object:idx}" and "${for-each-object:name}".
+// 
+// 
+// lModifier (list(dict)): list of modifier configurations that are applied per object.
+// lObjectTypes (list(string), optional): list of objects types that are to be taken into account.
+//                                         By default all object types are allowed.
+// sObjectNamePattern (string, optional): Only objects with names that match this regular expression
+//                                         are taken into account. By default this is not applied.
+
+
+{
+    sDTI: "/catharsys/blender/modify:1.0",
+
+    sId: "${folder}/${filebasename}",
+    
+    mCollections: {
+        Objects: [
+            {
+                sDTI: "blender/modify/collection/for-each-object:1.0",
+
+                lObjectTypes: ["MESH"],
+                // sObjectNamePattern: "C.+",
+
+                lModifiers: [
+                    {
+                        sDTI: "blender/modify/object/delta-location:1",
+
+                        // Has to be one of: "km", "m", "mm", "um"
+                        sUnit: "m",
+
+                        xValue: [0, 0, "${for-each-object:idx}"],
+                    }
+                ]
+            }
+        ]    
+    }
+}
+
+

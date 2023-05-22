@@ -1,0 +1,52 @@
+// <LICENSE id="CC BY 4.0">
+//
+//   Image-Render Workspace 'examples'
+//   Copyright 2022 Robert Bosch GmbH and its subsidiaries
+//   
+//   This work is licensed under the 
+//   
+//       Creative Commons Attribution 4.0 International License.
+//   
+//   To view a copy of this license, visit 
+//       http://creativecommons.org/licenses/by/4.0/ 
+//   or send a letter to 
+//       Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
+//   
+//
+// </LICENSE>
+//
+// Set AnyTruth labeltype for collection
+//
+{
+    sDTI: "/catharsys/blender/modify:1.0",
+
+    sId: "${folder}/${filebasename}",
+    
+    mCollections: {
+        Objects: [
+            {
+                sDTI: "blender/modify/collection/anytruth/labeltype:1.0",
+
+                // Label id for collection
+                sLabelTypeId: "Vehicle",
+
+                // Activate label
+                bHasLabel: true,
+
+                // Ignore this collection for labling.
+                // This means, that all materials are kept during label rendering.
+                // Only useful for transparent materials.
+                bIgnore: false,
+
+                // Instance type. Must be one of:
+                // - "SINGLE": all objects in the collection are one instance
+                // - "OBJECT": each object in the collection is one instance
+                // - "COLLECTION": each collection in this collection is one instance
+                // - "INHERIT": inherits the children instance type from the parent collection
+                sChildrenInstanceType: "OBJECT",
+            }
+        ]    
+    }
+}
+
+

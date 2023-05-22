@@ -1,0 +1,48 @@
+// <LICENSE id="CC BY 4.0">
+//
+//   Image-Render Workspace 'examples'
+//   Copyright 2022 Robert Bosch GmbH and its subsidiaries
+//   
+//   This work is licensed under the 
+//   
+//       Creative Commons Attribution 4.0 International License.
+//   
+//   To view a copy of this license, visit 
+//       http://creativecommons.org/licenses/by/4.0/ 
+//   or send a letter to 
+//       Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
+//   
+//
+// </LICENSE>
+{
+    sDTI: "/catharsys/blender/modify:1.0",
+
+    sId: "${folder}/${filebasename}",
+    
+    mObjects: {
+        Camera: [
+            {
+                sDTI: "blender/modify/object/rename:1.0",
+
+                // The new object name. If bUseRegEx == true, this is expected to be a
+                // regular expression, that can use the capture groups of the search term
+                // to create the new name. This is particularly useful in combination
+                // with the "for-each" collection modifier.
+                sReplace: "MyCamera",
+
+                // Determines whether a regular expression is used for renaming or not.
+                // The argument 'sSearch' is only used, if this argument is true.
+                // This modifier uses the python function 're.sub()'. See its' documentation
+                // for more information on how to use capture groups: 
+                //     https://docs.python.org/3/library/re.html
+                bUseRegEx: false,
+
+                // The regular expression search string used for regular expression replacement.
+                // Should define capture groups for replacement.
+                sSearch: ""
+            }
+        ]    
+    }
+}
+
+

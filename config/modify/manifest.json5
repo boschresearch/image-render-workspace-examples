@@ -1,0 +1,35 @@
+
+// <LICENSE id="CC BY 4.0">
+//
+//   Image-Render Workspace 'examples'
+//   Copyright 2022 Robert Bosch GmbH and its subsidiaries
+//   
+//   This work is licensed under the 
+//   
+//       Creative Commons Attribution 4.0 International License.
+//   
+//   To view a copy of this license, visit 
+//       http://creativecommons.org/licenses/by/4.0/ 
+//   or send a letter to 
+//       Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
+//   
+//
+// </LICENSE>
+{
+    sDTI: "/catharsys/manifest:1.1",
+    sId: "${filebasename}",
+
+    mActions: {
+        render: {
+            sDTI: "manifest/action:1",
+            lConfigs: [
+                { sId: "render", sDTI: "blender/render/output-list:1", sForm: "file/json", bAddToPath: false },
+                { sId: "cap", sDTI: "capture/std:1", sForm: "file/json", bAddToPath: false },
+                { sId: "cam", sDTI: "camera-name:1", sForm: "value", bAddToPath: false },
+                { sId: "mod", sDTI: "blender/modify:1", sForm: "file/json" },
+            ],
+            lDeps: []
+        },
+    }
+}
+

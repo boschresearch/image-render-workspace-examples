@@ -1,0 +1,36 @@
+// <LICENSE id="CC BY 4.0">
+//
+//   Image-Render Workspace 'examples'
+//   Copyright 2022 Robert Bosch GmbH and its subsidiaries
+//   
+//   This work is licensed under the 
+//   
+//       Creative Commons Attribution 4.0 International License.
+//   
+//   To view a copy of this license, visit 
+//       http://creativecommons.org/licenses/by/4.0/ 
+//   or send a letter to 
+//       Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
+//   
+//
+// </LICENSE>
+{
+    sDTI: "/catharsys/blender/modify:1.0",
+
+    sId: "${folder}/${filebasename}",
+    
+    mObjects: {
+        Grid: [
+            {
+                // Enables/disables object "Grid" and all of its' children
+                // for rendering, depending on the value of 'xValue'.
+                // 'xValue' has to be 0 or boolean 'false' or the string "false" to disable
+                // and 1 or boolean 'true' or string "true" to enable.
+                sDTI: "blender/modify/object/enable:1",
+                xValue: 0,
+            }
+        ]    
+    }
+}
+
+

@@ -1,0 +1,75 @@
+
+// <LICENSE id="CC BY 4.0">
+//
+//   Image-Render Workspace 'examples'
+//   Copyright 2022 Robert Bosch GmbH and its subsidiaries
+//   
+//   This work is licensed under the 
+//   
+//       Creative Commons Attribution 4.0 International License.
+//   
+//   To view a copy of this license, visit 
+//       http://creativecommons.org/licenses/by/4.0/ 
+//   or send a letter to 
+//       Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
+//   
+//
+// </LICENSE>
+{
+    sDTI: "/catharsys/blender/render/output-list:1",
+	sId: "${filebasename}",
+
+	lSettings: [
+        {
+            sDTI: "/catharsys/blender/render/settings/render:1",
+            sId: "${filebasename}",
+
+            // Size of rendering tiles. Should be set to 64x64 on a CPU
+            tile_x: 256,
+            tile_y: 128,
+        },
+        
+        {
+            sDTI: "/catharsys/blender/render/settings/cycles:1",
+            sId: "${filebasename}",
+
+            // Sets the compute device type to be used. 
+            // Must be "NONE", "CUDA" (default) or "OPTIX".
+            // sComputeDeviceType: "OPTIX",
+
+            // If this is set to 'true', the Cycles renderer uses 
+            // the graphics card and the CPU
+            // bCombinedCpuCompute: true,
+
+            // Set this either to "CPU" or "GPU".
+            // If it is set to "GPU", the 'sComputeDeviceType' determines
+            // which type of GPU compute device is used.
+            device: "GPU",
+        }
+    ],
+
+    lOutputs: [
+        {
+            sDTI: "/catharsys/blender/render/output/image:1",
+            sId: "${filebasename}",
+
+            mCompositor: {
+                sDTI: "/catharsys/blender/compositor:1",
+                sId: "${filebasename}",
+
+                lFileOut: [
+                    { 
+                        sOutput: "Image",
+                        sFolder: "Image",
+                        sContentType: "image",
+                        "mFormat" : { 
+                            sFileFormat: "PNG",
+                            sColorDepth: "8"
+                        }
+                    },
+                ]
+            }
+        }
+    ] // lOutputs
+}
+

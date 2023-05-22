@@ -1,0 +1,50 @@
+// <LICENSE id="CC BY 4.0">
+//
+//   Image-Render Workspace 'test'
+//   Copyright 2022 Robert Bosch GmbH and its subsidiaries
+//   
+//   This work is licensed under the 
+//   
+//       Creative Commons Attribution 4.0 International License.
+//   
+//   To view a copy of this license, visit 
+//       http://creativecommons.org/licenses/by/4.0/ 
+//   or send a letter to 
+//       Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
+//   
+//
+// </LICENSE>
+{
+    sDTI: "/catharsys/blender/animate:1.0",
+
+    sId: "${filebasename}",
+    mObjects: {
+        Cube: [
+            { 
+                sDTI: "blender/animate/object/rotate/const:1", 
+
+                // Degrees per second rotation
+                fDegPerSec: 360, 
+
+                // Axis of rotation
+                lAxis: [0, 0, 1] 
+            },
+            { 
+                sDTI: "/catharsys/blender/animate/object/translate/const:1",
+
+                // The speed along the direction. 
+                // The units of this value are specified in 'fSpeedUnit'
+                fSpeed: 10.0,
+
+                // Must be 'km/h' or 'm/s'
+                fSpeedUnit: "m/s",
+
+                // The offset along the direction in meters
+                fOffset_m: 0.0,
+
+                // The direction of the constant movement
+                lDir: [1, 0, 0],
+            }
+        ]
+    }
+}

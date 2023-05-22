@@ -1,0 +1,12 @@
+__pycache__
+*.pyc
+build
+*.egg-info
+_local
+_blender
+_render
+*.code-workspace
+.vscode
+.catharsys
+*.blend1
+blend/Blender-*

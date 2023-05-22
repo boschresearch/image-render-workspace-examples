@@ -1,0 +1,126 @@
+
+// <LICENSE id="CC BY 4.0">
+//
+//   Image-Render Workspace 'examples'
+//   Copyright 2022 Robert Bosch GmbH and its subsidiaries
+//   
+//   This work is licensed under the 
+//   
+//       Creative Commons Attribution 4.0 International License.
+//   
+//   To view a copy of this license, visit 
+//       http://creativecommons.org/licenses/by/4.0/ 
+//   or send a letter to 
+//       Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
+//   
+//
+// </LICENSE>
+{
+    // The type identifier of this file
+    sDTI: "/catharsys/launch:3.0",
+    
+    // The id of this launch parameter set
+    sId: "${filebasename}",
+    
+    // Some information what this configuration is for
+    sInfo: "Workspace to demonstrate configuration processing variable usage",
+
+    // Runtime variables, which are available just like global variables,
+    // in all configurations following an action. However, they are
+    // not stored in the JSON data itself, but only in the parser instance.
+    // This can be useful, if you need to read in a large file but only pick
+    // a small part from this file per configuration. In this case, you do not
+    // want to copy the full data set to each configuration JSON.
+    __runtime_vars__: {
+        mRtData: "$read{data}",
+    },
+
+    // The default arguments used for all actions.
+    // Each action can override these parameters.
+    mGlobalArgs: {
+        // The type identifier for this data structure.
+        // Make sure to use version 1.1, so that parameters
+        // 'iConfigGroups' and 'iFrameGroups' are supported.
+        sDTI: "/catharsys/launch/args:1.1",
+
+        // IMPORTANT: All files of type '.json', '.json5' and '.ison' can be
+        //            referenced by their basename alone, without the extension.
+        //            The appropriate extension is added automatically.
+
+        // The name of the trial file to use.
+        sTrialFile: "trial",
+
+        // The execution configuraion file.
+        // IMPORTANT: All file paths are regarded as relative 
+        //            to the path of the current file.
+        sExecFile: "exec",
+
+        // Index of the first frame to render
+        iFrameFirst: 0,
+
+        // Index of the last frame to render
+        iFrameLast: 0,
+
+        // Step between frames
+        iFrameStep: 1,
+
+        // For a render action, this determines the number of rays per pixel.
+        // Actions that are dependent on a rendering, use this value to find
+        // the path of the rendered images.
+        iRenderQuality: 4,
+
+        // If the 'sTopFolder' is defined, it is used as the top output folder
+        // for all data generation. If it is not defined, the 'iRenderQuality'
+        // parameter is used to create the top folder name.
+        // sTopFolder: "test",
+
+        // Flag whether to process the action. If false, configurations are prepared
+        // but the actual processing is not performed.
+        bDoProcess: false,
+
+        // Flag whether to overwrite already created data.
+        // If false, processes where the result data is already present are skipped.
+        bDoOverwrite: true,
+
+        // Flag whether to store the data the processing is based on. 
+        // For example, for the Blender render action the modified Blender file is
+        // saved just before the actual rendering is initiated.
+        bDoStoreProcessData: false
+    },
+
+    // The map of all actions that can be launched
+    mActions: {
+        // An arbitrarily chosen name for an action.
+        // In this case it makes sense to call it 'render', as it
+        // executes the rendering action.
+        run: {
+            sDTI: "/catharsys/launch/action:1.0",
+            // The id of the action
+            sActionDTI: "/catharsys/action/std/blender/render/std:1.0",
+
+            // The action configuration.
+            // The parameters defined in 'mConfig' override the 'mGlobalArgs'.
+            mConfig: {
+                sDTI: "/catharsys/launch/args:1.1",
+                sInfo: "Dummy render action",
+                // The following two parameters are only useful when processing
+                // on an job scheduling system like LSF, where multiple jobs can be run in parallel.
+                //
+                // This parameter defines in how many groups all configurations are collected.
+                // The number of configurations is determined by the trial configuration.
+                // For values <= 0, there is one group for each configuration.
+                iConfigGroups: 1,
+                // This parameter defines in how man groups all frames are collected.
+                iFrameGroups: 1
+                // The total number of jobs generated are the number of configuration groups
+                // times the number of frame groups.
+                //
+                // For example, suppose there are three configurations, each with 10 frames,
+                // and iConfigGroups = 0 and iFrameGroups = 2, then there are 3*2 = 6 jobs,
+                // two jobs per configuration each rendering 5 frames.
+            }
+        },
+    },
+
+}
+

@@ -1,0 +1,113 @@
+// <LICENSE id="CC BY 4.0">
+//
+//   Image-Render Workspace 'examples'
+//   Copyright 2022 Robert Bosch GmbH and its subsidiaries
+//   
+//   This work is licensed under the 
+//   
+//       Creative Commons Attribution 4.0 International License.
+//   
+//   To view a copy of this license, visit 
+//       http://creativecommons.org/licenses/by/4.0/ 
+//   or send a letter to 
+//       Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
+//   
+//
+// </LICENSE>
+{
+    sDTI: "/catharsys/blender/modify:1.0",
+    sId: "${folder}/${filebasename}",
+
+    // node-values modifier elements:
+    //    
+    // sNode (string): The label or name of the node.
+    // lInputs (list): List of dictionaries that define input values.
+    // lOutputs (list): List of dictionaries that define output values.
+    // lProperties (list): List of dictionaries that define property values.
+
+    // "lInputs", "lOutputs" element args:
+    //     "sName" (string): Name of the input/output.
+    //     "xValue" (string, list, value): Value of the input/output. 
+    //             Has to be a list of three elements for vectors.
+    //             Has to be a string for objects.
+
+    // "lProperties" element args:
+    //     "sName" (string): Name of the property. For example, for a "Math" node, 
+    //                         the "operation" property can be set to determine which
+    //                         mathematical operation is performed. Properties are
+    //                         typically strings all in uppercase letters (enums).
+    //     "sValue" (string): Value of string property.
+    //     "xValue" (string, int, float, bool): Value of property.
+
+    // "mImage" (dictionary): Property of an image to use with the node.
+    //                         This can only be used for nodes that actually support
+    //                         images, like the "Image Texture" and "Environment Texture" nodes.
+    //                         Possible elements of dictionary are:
+
+    //     "sType" (string"): Type of image. Currently, has to be one of ["LOAD", "SELECT"].
+    //         Type "LOAD":
+    //             "sName" (string): Filepath to an image to load and use as image for this node.
+
+    //         Type "SELECT":
+    //             "sName" (string): Name of an image that is already available in the Blender file.
+
+    mMaterials: {
+        "Material.Grid": [
+            {
+                sDTI: "blender/modify/material/node-values:1.0",
+
+                // The name or label of the node.
+                sNode: "Scale",
+
+                // Set the default value of the node outputs
+                lOutputs: [
+                    // Give the name of the output and the value it should be setup to.
+                    { sName: "Value", xValue: 1 },
+                ]
+            },
+
+            {
+                sDTI: "blender/modify/material/node-values:1.0",
+
+                // The name or label of the node.
+                sNode: "Bump",
+
+                // Set the default value of the node outputs
+                lProperties: [
+                    // Give the name of the property and the value it should be setup to.
+                    { sName: "invert", xValue: true },
+                ]
+            },
+
+            {
+                sDTI: "blender/modify/material/node-values:1.0",
+
+                // The name or label of the node.
+                sNode: "Mapping",
+
+                // Set the default value of the node outputs
+                lInputs: [
+                    // Give the name of the input and the value it should be setup to.
+                    { sName: "Rotation", xValue: [0.1, 0.2, 0.3] },
+                ]
+            },
+            
+            {
+                sDTI: "blender/modify/material/node-values:1.0",
+
+                // The name or label of the node.
+                sNode: "Color",
+
+                // Set the default value of the node outputs
+                mImage: {
+                    // Give the name of the input and the value it should be setup to.
+                    sType: "SELECT", 
+                    sName: "Fabric004_1K_Roughness.png" 
+                },
+            },
+            
+        ]    
+    }
+}
+
+

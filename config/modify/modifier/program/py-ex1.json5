@@ -1,0 +1,70 @@
+// <LICENSE id="CC BY 4.0">
+//
+//   Image-Render Workspace 'examples'
+//   Copyright 2022 Robert Bosch GmbH and its subsidiaries
+//   
+//   This work is licensed under the 
+//   
+//       Creative Commons Attribution 4.0 International License.
+//   
+//   To view a copy of this license, visit 
+//       http://creativecommons.org/licenses/by/4.0/ 
+//   or send a letter to 
+//       Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
+//   
+//
+// </LICENSE>
+{
+    sDTI: "/catharsys/blender/modify:1.0",
+
+    sId: "${folder}/${filebasename}",
+    
+    // A program modifier allows the execution of modifiers of any type
+    // in a specific order.
+    mProgram: { lModifier: [
+
+        // Obtain information about an object with an evaluator
+        { sDTI: "/catharsys/blender/modify/evaluate:1", mData: {
+
+            // This evaluator executes a python script.
+            // The return value of this script is a dictionary variable
+            // with the name 'dicResult'. This dictionary is mapped to
+            // the config variable 'result' in this case.
+            "result": {
+
+                sDTI: "/catharsys/blender/modify/evaluate/py/script:1",
+                
+                lApplyModes: ["FRAME_UPDATE"],
+
+                // The name of the python script.
+                // The path to this file is relative this json file path,
+                // if it is not an absolute path.
+                sScriptFilename: "modify1.py",
+
+                // This is an example of an absolute path
+                // sScriptFilename: "${path-workspace}/assets/modify1.py",
+
+                mGlobals: {
+                    sTitle: "Hello World",
+                    sObject: "Cube",
+                    lScale: [0.5, 1, 2],
+                },
+            },
+        }},
+
+        { sDTI: "/catharsys/blender/modify/object:1", mData: { "Cylinder": [
+            {
+                sDTI: "blender/modify/object/location:1",
+                lApplyModes: ["FRAME_UPDATE"],
+
+                sUnit: "m",
+                // Here we are using the result dictionary returned by the python script,
+                // and pick out the element 'lPosition'
+                xValue: "${result:lPosition}",
+            }
+        ]}},
+
+    ]}, // Program
+}
+
+

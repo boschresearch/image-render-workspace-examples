@@ -1,0 +1,23 @@
+
+{
+	sDTI: "/catharsys/manifest/control/loop/range:1.0",
+	sId: "${filebasename}",
+
+	__locals__: {
+		iStart: "${action:args:iConfigStart}",
+		iCnt: "${action:args:iConfigCount}"
+	},
+
+	iMin: "${iStart}",
+	iMax: "$sum{${iStart}, ${iCnt}, -1}",
+	iStep: 1,
+	// lActiveIndices: "${action:args:lConfigActIdx}",
+
+	mIterationConfig: {
+        sId: "$L{%0}",
+
+		__globals__: {
+			iSeed: "$int{$L{%0}}",
+		},
+	},
+}

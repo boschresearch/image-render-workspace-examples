@@ -1,0 +1,129 @@
+// <LICENSE id="CC BY 4.0">
+//
+//   Image-Render Workspace 'examples'
+//   Copyright 2022 Robert Bosch GmbH and its subsidiaries
+//   
+//   This work is licensed under the 
+//   
+//       Creative Commons Attribution 4.0 International License.
+//   
+//   To view a copy of this license, visit 
+//       http://creativecommons.org/licenses/by/4.0/ 
+//   or send a letter to 
+//       Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
+//   
+//
+// </LICENSE>
+{
+    sDTI: "/catharsys/blender/modify:1.0",
+
+    sId: "${folder}/${filebasename}",
+    
+    // A program modifier allows the execution of modifiers of any type
+    // in a specific order.
+    mProgram: { lModifier: [
+
+        { sDTI: "/catharsys/blender/generate/in-program:1", mData: { 
+            // List of generators. 
+            // 'my-object' is available as ISON variable after execution of the generators.
+            // It contains a dictionary of collection name to list of objects generated in 
+            // that collection.
+            // That is, you can use 'my-object' as variable in the configs following this generator.
+            "my-object": [{
+                sDTI: "blender/generate/object/import/obj:1",
+
+                // Switch to enable/disable generator.
+                // This can be helpful for randomized scenarios, where this can be a variable.
+                bEnabled: true,
+
+                // Optional element. Must be one of ["INIT", "FRAME_UPDATE"].
+                // Default is "INIT".
+                lApplyModes: ["INIT"],
+
+                // The Blender filename from where to load the collection.
+                // You should always load collections from external Blender files,
+                // as this also imports all dependent assets, like materials, image, textures, etc.
+                sFilePath: "${path-workspace}/assets/objects/Monkey.obj",
+
+                // You can define the resultant object name
+                sObjectName: "MyObject",
+
+                // The collection where the imported object is placed.
+                // If the collection does not exist it will be created.
+                lCollectionHierarchy: [ "Objects" ],
+
+                // The factor by which the object is scaled
+                fScaleFactor: 2.0,
+
+                // The location where the object is placed
+                lLocation: [0, 0, 0],
+
+                // A dictionary describing how the origin of the imported
+                // object should be adapted. If this dictionary is not present,
+                // the origin is not modified.
+                mSetOrigin: {
+                    // This is an optional flag whether to set the origin
+                    bEnable: true,
+                    // The set-origin type
+                    sType: "ORIGIN_CENTER_OF_VOLUME",
+                    // The set-origin center type
+                    sCenter: "MEDIAN",
+                },
+
+                // A dictionary containing parameters for smoothing the imported object's surface.
+                // If this dictionary is not present, the surface is not smoothed.
+                mSmoothSurface: {
+                    // This is an optional flag whether to smooth the surface
+                    bEnable: true,
+                    // The smoothing uses a voxel remeshing of the object.
+                    // This parameter sets the voxel size to use.
+                    fVoxelSize: 0.5,
+                },
+
+                // An optional list of modifiers to apply to the object
+                lModifiers: [
+                    {
+                        sDTI: "blender/modify/object/location:1",
+
+                        // Has to be one of: "km", "m", "mm", "um"
+                        sUnit: "m",
+
+                        xValue: [0, 0, 0],
+                    }
+                ]
+            }],
+
+        }},
+
+        // Use an evaluator to run a python script in this case.
+        { sDTI: "/catharsys/blender/modify/evaluate:1", mData: {
+
+            // This evaluator executes a python script.
+            // The return value of this script is a dictionary variable
+            // with the name 'dicResult'. This dictionary is mapped to
+            // the config variable 'result' in this case.
+            "result": {
+
+                sDTI: "/catharsys/blender/modify/evaluate/py/script:1",
+                
+                lApplyModes: ["FRAME_UPDATE"],
+
+                // The name of the python script.
+                // The path to this file is relative this json file path,
+                // if it is not an absolute path.
+                sScriptFilename: "modify1.py",
+
+                // This is an example of an absolute path
+                // sScriptFilename: "${path-workspace}/assets/modify1.py",
+
+                mGlobals: {
+                    iSeed: "$iSeed",
+                    sObject: "MyObject",
+                },
+            },
+        }},
+
+    ]}, // Program
+}
+
+

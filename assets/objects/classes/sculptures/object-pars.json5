@@ -1,0 +1,19 @@
+{
+    // These object parameters are used for objects in this folder 
+    // and for all child folders.
+    // All or some of the parameters can be overwritten in child folders
+    // by placing a file with the same name in the corresponding child folder.
+    sDTI: "/catharsys/blender/generate/collection/import/folder-type-hierarchy/per-folder-args:1.0",
+    sId: "${filebasename}",
+
+    // This is the factor the imported objects are scaled by.
+    fScaleFactor: 0.5,
+
+    mSmoothSurface: {
+        // This is an optional flag whether to smooth the surface
+        bEnable: true,
+        // The smoothing uses a voxel remeshing of the object.
+        // This parameter sets the voxel size to use.
+        fVoxelSize: 0.1,
+    },
+}

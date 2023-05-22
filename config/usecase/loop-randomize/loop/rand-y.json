@@ -1,0 +1,40 @@
+
+// <LICENSE id="CC BY 4.0">
+//
+//   Image-Render Workspace 'simple'
+//   Copyright 2022 Robert Bosch GmbH and its subsidiaries
+//   
+//   This work is licensed under the 
+//   
+//       Creative Commons Attribution 4.0 International License.
+//   
+//   To view a copy of this license, visit 
+//       http://creativecommons.org/licenses/by/4.0/ 
+//   or send a letter to 
+//       Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
+//   
+//
+// </LICENSE>
+{
+	sDTI: "/catharsys/manifest/control/loop/range:1.0",
+	sId: "${filebasename}",
+
+	__locals__: {
+		iStart: "${action:args:iConfigStartY}",
+		iCnt: "${action:args:iConfigCountY}"
+	},
+
+	iMin: "${iStart}",
+	iMax: "$sum{${iStart}, ${iCnt}, -1}",
+	iStep: 1,
+
+	mIterationConfig: {
+        sId: "$L{%0}",
+
+		__globals__: {
+			iSeed: "$int{$L{%0}}",
+			// doSeed: "$rand.seed{$iSeed}",
+			fY: "$rand.uniform{-1, 1}",
+		}
+	}
+}
