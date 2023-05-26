@@ -32,9 +32,10 @@
         sId: "$L{%0}",
 
 		__globals__: {
-			iSeed: "$int{$L{%0}}",
-			// doSeed: "$rand.seed{$iSeed}",
-			fY: "$rand.uniform{-1, 1}",
+			// Create a random number generator using the string "rand-y-$L{%0}" as seed
+			rndY: "$rand.generator{rand-y-$L{%0}}",
+			// Get a random number using the 'rndY' random generator
+			fY: "$rand.uniform{$rndY, -1, 1}",
 		}
 	}
 }

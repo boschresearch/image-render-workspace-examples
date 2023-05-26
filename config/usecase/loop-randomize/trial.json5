@@ -19,7 +19,7 @@
     sDTI: "/catharsys/trial:1.0",
     sId: "${rel-path-config}",
     
-    iRandomSeed: 1,
+    xRandomSeed: 1,
 
     sManifestFile: "manifest",
     mConfigs: {

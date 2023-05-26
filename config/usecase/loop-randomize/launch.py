@@ -15,7 +15,7 @@
 # </LICENSE>
 ###
 
-#%% Load Workspace
+# %% Load Workspace
 
 # Load the Catharsys API module
 import catharsys.api as capi
