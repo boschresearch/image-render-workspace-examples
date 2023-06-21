@@ -1,0 +1,41 @@
+// <LICENSE id="CC BY 4.0">
+//
+//   Image-Render Workspace 'examples'
+//   Copyright 2022 Robert Bosch GmbH and its subsidiaries
+//   
+//   This work is licensed under the 
+//   
+//       Creative Commons Attribution 4.0 International License.
+//   
+//   To view a copy of this license, visit 
+//       http://creativecommons.org/licenses/by/4.0/ 
+//   or send a letter to 
+//       Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
+//   
+//
+// </LICENSE>
+{
+    sDTI: "/catharsys/blender/modify:1.0",
+
+    sId: "${folder}/${filebasename}",
+    
+    mObjects: {
+        // The object to export in OBJ file format
+        Cube: [
+            {
+                // This modifier exports the selected object in OBJ file format
+                sDTI: "/catharsys/blender/modify/object/export/obj:1.0",
+
+                // The file path under which to store the OBJ file and its' textures.
+                // Note that only textures that reference an external texture file
+                // will be referenced in the `.mtl` that lies next to the `.obj` file.
+                sFilePath: "[some filepath]",
+
+                // Flag whether to create the target path
+                bCreatePath: true,
+            }
+        ]    
+    }
+}
+
+

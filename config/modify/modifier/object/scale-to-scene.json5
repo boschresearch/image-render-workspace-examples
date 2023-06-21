@@ -1,0 +1,45 @@
+// <LICENSE id="CC BY 4.0">
+//
+//   Image-Render Workspace 'examples'
+//   Copyright 2022 Robert Bosch GmbH and its subsidiaries
+//   
+//   This work is licensed under the 
+//   
+//       Creative Commons Attribution 4.0 International License.
+//   
+//   To view a copy of this license, visit 
+//       http://creativecommons.org/licenses/by/4.0/ 
+//   or send a letter to 
+//       Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
+//   
+//
+// </LICENSE>
+{
+    sDTI: "/catharsys/blender/modify:1.0",
+
+    sId: "${folder}/${filebasename}",
+    
+    mObjects: {
+        Cube: [
+            {
+                // This modifier scales an object to the current scene units
+                sDTI: "blender/modify/object/scale-to-scene:1.0",
+
+                // This gives the ratio of meters per Blender unit of the original object.
+                // For example, if the object was originally designed in millimeters, then
+                // a 1m wide object will be 1000 Blender units (bu) wide. If this object is 
+                // imported into a Blender file that uses 1m == 1bu, it needs to be scaled by
+                // `0.001` to fit the current scene. 
+                // This parameter here only specifies the Meter to Blender unit ratio in which 
+                // the original object was designed. The actual scaling factor is calculated
+                // from this using the current scene units.
+                fOrigMeterPerBU: 0.001,
+
+                // This defines an additional scaling of the object.
+                lScale: [1.0, 1.0, 1.0],
+            }
+        ]    
+    }
+}
+
+

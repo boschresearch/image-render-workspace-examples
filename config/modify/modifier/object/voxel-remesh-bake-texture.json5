@@ -1,0 +1,67 @@
+// <LICENSE id="CC BY 4.0">
+//
+//   Image-Render Workspace 'examples'
+//   Copyright 2022 Robert Bosch GmbH and its subsidiaries
+//   
+//   This work is licensed under the 
+//   
+//       Creative Commons Attribution 4.0 International License.
+//   
+//   To view a copy of this license, visit 
+//       http://creativecommons.org/licenses/by/4.0/ 
+//   or send a letter to 
+//       Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
+//   
+//
+// </LICENSE>
+{
+    sDTI: "/catharsys/blender/modify:1.0",
+
+    sId: "${folder}/${filebasename}",
+    
+    mObjects: {
+        // The object here should be some complex mesh object with a texture shader
+        Cube: [
+            {
+                // This modifier uses the voxel remesh modifier to remesh the object
+                // and then bakes the texture of the original object on the remeshed object.
+                sDTI: "/catharsys/blender/modify/object/voxel-remesh-bake-texture:1.0",
+                
+                // The voxel size for the remeshing. This must be a sensible value w.r.t.
+                // the dimensions of the original object
+                fRemeshVoxelSize: 0.01,
+                
+                // Flag whether to smooth the surface of the original object.
+                // This uses the Smooth modifier of Blender
+                bDoSmoothSurface: true,
+                // Number of iterations to apply smoothing recursively
+                iSmoothIterations: 3,
+                // Factor of smoothing per iteration
+                fSmoothFactor: 0.5,
+
+                // The Multi Resolution Modifier of Blender is used to render a normal map
+                // to a texture. This parameter defines how many times the "subdivide" operation
+                // is executed on the remeshed object.
+                iMultiResIterations: 2,
+                // The name of the remeshed obect (optional)
+                sLowPolyObjName: "Cube.LP",
+                // The resolution of the normal map and diffuse map images for the remeshed object
+                lBakedTexRes: [2048, 2048],
+                // For the generation of the diffuse texture, this sets what volume about the remeshed object
+                // is taken into account. Note that a ShrinkWrap modifier is applied to the remeshed object 
+                // to map it to the surface of the original object. However, this will in general not lead
+                // to a perfect match. The cage extrusion should enclose the expected variation from the 
+                // original object.
+                fBakedTexCageExtrusion: 0.1,
+
+                // If this parameter is given, the generated textures will be stored in files at the given path.
+                // The image's filenames are generated from the remeshed object name. This parameter is only
+                // a path to a directory where the textures will be placed.
+                // If this parameter is not given, the images will be packed into the blender file.
+                // sTexPath: "[some path]",
+            }
+        ]    
+    }
+}
+
+

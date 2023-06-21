@@ -57,6 +57,9 @@
                 // The location where the object is placed
                 lLocation: [0, 0, 0],
 
+                // The absolute rotation of the object in Euler values
+                lRotationEuler_deg: [0, 0, 0],
+
                 // A dictionary describing how the origin of the imported
                 // object should be adapted. If this dictionary is not present,
                 // the origin is not modified.
