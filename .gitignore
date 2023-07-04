@@ -10,3 +10,4 @@ _render
 .catharsys
 *.blend1
 blend/Blender-*
+action-job*.json

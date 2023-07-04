@@ -1,0 +1,37 @@
+
+// <LICENSE id="CC BY 4.0">
+//
+//   Image-Render Workspace 'examples'
+//   Copyright 2022 Robert Bosch GmbH and its subsidiaries
+//   
+//   This work is licensed under the 
+//   
+//       Creative Commons Attribution 4.0 International License.
+//   
+//   To view a copy of this license, visit 
+//       http://creativecommons.org/licenses/by/4.0/ 
+//   or send a letter to 
+//       Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
+//   
+//
+// </LICENSE>
+{
+    sDTI: "/catharsys/manifest:1.1",
+    sId: "${filebasename}",
+
+    mActions: {
+        run: {
+            sDTI: "manifest/action:1",
+            lConfigs: [
+                { sId: "render", sDTI: "blender/render/output-list:1", sForm: "file/json", bAddToPath: false },
+                { sId: "cap", sDTI: "capture/std:1", sForm: "file/json", bAddToPath: false },
+                { sId: "cam", sDTI: "camera-name:1", sForm: "value" },
+                // The type "vars-test:1" is just an arbitrary typename.
+                // However, the json file referenced in the trial config must use this DTI.
+                { sId: "vars", sDTI: "vars-test:1", sForm: "file/json", bAddToPath: false },
+            ],
+            lDeps: []
+        },
+    }
+}
+
