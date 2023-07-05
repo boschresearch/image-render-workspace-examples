@@ -11,3 +11,4 @@ _render
 *.blend1
 blend/Blender-*
 action-job*.json
+.nicegui
