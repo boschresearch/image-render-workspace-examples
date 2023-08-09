@@ -5,6 +5,7 @@ build
 _local
 _blender
 _render
+_output
 *.code-workspace
 .vscode
 .catharsys
@@ -12,3 +13,5 @@ _render
 blend/Blender-*
 action-job*.json
 .nicegui
+.variants
+gui-web-user.json
