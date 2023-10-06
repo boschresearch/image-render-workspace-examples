@@ -18,9 +18,12 @@
     // // This is the DTI as mentioned in the manifest file
     sDTI: "vars-test:1.0",
     sId: "${filebasename}",
+    sFilter: "'${id:meta:value:sId}' == 'meta-01'",
+
 
     __globals__: {
         "vars-rt-1": "was here",
+        _: "$print{$filebasename -> ${id:meta:value:sId}}",
     },
 
     valA: "${mRtData:data:a}",
