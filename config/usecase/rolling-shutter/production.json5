@@ -1,0 +1,177 @@
+{
+    sDTI: "/catharsys/production:1.0",
+
+    mGroups: {
+
+        raw: {
+            sName: "Rolling Shutter Raw Data",
+            sPathStructure: "!production/!rq/!project/Left/Pano/?camera/?mod/?anim/?final-frame",
+            mVars: {
+                "camera": {
+                    sName: "Camera",
+                },
+                "mod": {
+                    sName: "Modifier",
+                },
+                "anim": {
+                    sName: "Animation",
+                },
+                "final-frame": {
+                    sName: "Final Frame",
+                    // This regular expression must match, for the folder
+                    // to be excepted.
+                    sRegExParseValue: "Frame_0+(?!$)(\\d+)$",
+                    sRegExReplaceValue: "\\1",
+                }
+            },
+            mArtefacts: {
+                image: {
+                    sDTI: "/catharsys/production/artefact/image/exr:1.0",
+                    sName: "Image",
+                    sPathStructure: "ImageRaw/?exposure",
+                    mVars: {
+                        "exposure": {
+                            sName: "Exposure",
+                            sRegExParseValue: "Exp_0+(?!\\.)(\\d+)\\.exr",
+                            sRegExReplaceValue: "\\1",
+                        }
+                    }
+                },
+                pos3d: {
+                    sDTI: "/catharsys/production/artefact/image/exr:1.0",
+                    sName: "3D Pos",
+                    sPathStructure: "AT_Pos3d_Raw/?exposure",
+                    mVars: {
+                        "exposure": {
+                            sName: "Exposure",
+                            sRegExParseValue: "Exp_0+(?!\\.)(\\d+)\\.exr",
+                            sRegExReplaceValue: "\\1",
+                        }
+                    }
+                },
+            }
+        },
+
+        constructed: {
+            sName: "Final Data",
+            sPathStructure: "!production/!rq/!project/Left/Pano/?camera/?mod/?anim/?construct",
+            mVars: {
+                "camera": {
+                    sName: "Camera",
+                },
+                "mod": {
+                    sName: "Modifier",
+                },
+                "anim": {
+                    sName: "Animation",
+                },
+                "construct": {
+                    sName: "Construction",
+                    // This regular expression must match, for the folder
+                    // to be excepted.
+                    sRegExParseValue: "^(?!Frame_)(.+)",
+                    // sRegExReplaceValue: "\\1",
+                }
+            },
+            mArtefacts: {
+                __func_locals__: {
+                    mMetaData: {
+                        Config: {
+                            sDTI: "/catharsys/production/artefact/meta/json:1.0",
+                            sName: "Exposure Config",
+                            sRelPath: "ConstructCfg.json",
+                            mPrint: {
+                                tooltip: {
+                                    lLines: [
+                                        "Frame time (ms): $prod{1000, $float{${meta_data:dTrgFrameTime}}}",
+                                        "Line exposure (ms): $prod{1000, $float{${meta_data:dTrgExpPerLine}}}",
+                                        "Read outs per exposure: ${meta_data:iReadOutsPerExp}",
+                                    ],
+                                },
+                            },
+                        },
+                    },
+
+                },
+
+                image: {
+                    sDTI: "/catharsys/production/artefact/image/exr:1.0",
+                    sName: "Image",
+                    sPathStructure: "ImageRaw/!frame",
+                    mMeta: "$mMetaData",
+                },
+                depth: {
+                    sDTI: "/catharsys/production/artefact/image/exr:1.0",
+                    sName: "Depth + StdDev",
+                    sPathStructure: "AT_Depth/!frame",
+                    mMeta: "$mMetaData",
+                },
+                tonemap: {
+                    sDTI: "/catharsys/production/artefact/image/png:1.0",
+                    sName: "Tonemapped",
+                    sPathStructure: "?tonemap/!frame",
+                    mVars: {
+                        "tonemap": {
+                            sName: "Tonemap",
+                            sRegExParseValue: "^(?!ImageRaw|AT_Depth)(.+)",
+                            // sRegExReplaceValue: "\\1",
+                        }
+                    },
+                    mMeta: {
+                        Gamma: {
+                            sDTI: "/catharsys/production/artefact/meta/json:1.0",
+                            sName: "Tonemap Gamma",
+                            sRelPath: "ToneMap.json",
+                            sExpectDti: "/catharsys/blender/tonemap/type/gamma:1",
+
+                            mPrint: {
+                                tooltip: {
+                                    lLines: [
+                                        "Gamma",
+                                        "Black: ${meta_data:fSrcBlackValue}",
+                                        "White: ${meta_data:fSrcWhiteValue}",
+                                        "Gamma: ${meta_data:fGamma}",
+                                    ],
+                                },
+                            },
+                        },
+                        Log: {
+                            sDTI: "/catharsys/production/artefact/meta/json:1.0",
+                            sName: "Tonemap Log",
+                            sRelPath: "ToneMap.json",
+                            sExpectDti: "/catharsys/blender/tonemap/type/log:1",
+
+                            mPrint: {
+                                tooltip: {
+                                    lLines: [
+                                        "Log",
+                                        "Black: ${meta_data:fSrcBlackValue}",
+                                        "White: ${meta_data:fSrcWhiteValue}",
+                                    ],
+                                },
+                            },
+                        },
+                        Linear: {
+                            sDTI: "/catharsys/production/artefact/meta/json:1.0",
+                            sName: "Tonemap Linear",
+                            sRelPath: "ToneMap.json",
+                            sExpectDti: "/catharsys/blender/tonemap/type/linear:1",
+
+                            mPrint: {
+                                tooltip: {
+                                    lLines: [
+                                        "Linear",
+                                        "Black: ${meta_data:fSrcBlackValue}",
+                                        "White: ${meta_data:fSrcWhiteValue}",
+                                    ],
+                                },
+                            },
+                        },
+                    },
+                    
+                }
+            }
+        },
+
+    }
+}

@@ -1,0 +1,69 @@
+
+// <LICENSE id="CC BY 4.0">
+//
+//   Image-Render Workspace 'test'
+//   Copyright 2022 Robert Bosch GmbH and its subsidiaries
+//   
+//   This work is licensed under the 
+//   
+//       Creative Commons Attribution 4.0 International License.
+//   
+//   To view a copy of this license, visit 
+//       http://creativecommons.org/licenses/by/4.0/ 
+//   or send a letter to 
+//       Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
+//   
+//
+// </LICENSE>
+{
+    sDTI: "/catharsys/camera-set:1.0",
+    sId: "CameraSet.000",
+    mConfigs: {
+        Left: {
+            Pano: {
+                Test_120deg_48KP: {
+                    sDTI: "camera-pose:1.1",
+                    sCamera: "Cam.Pano.Std.Test_120deg_48KP",
+                    sParent: "Orig.Cam.Left",
+                    mDataSource: {
+                        mSrcPkg: {
+                            sDTI: "/package/anycam/camera-db:1.0",
+                            sId: "rb_std_v02",
+                            sName: "RB Standard Cameras",
+                            sVersion: "2.0.0"
+                        },
+                        sSrcCamId: "test/camera/pano_test_120deg_48KP",
+                        mBlender: {
+                            sFile: "Demo_RS_01.blend",
+                            sScene: "Scene",
+                            sViewLayer: "View Layer"
+                        }
+                    }
+                }
+            }
+        },
+        Right: {
+            Pano: {
+                Test_120deg_48KP: {
+                    sDTI: "camera-pose:1.1",
+                    sCamera: "Cam.Pano.Std.Test_120deg_48KP",
+                    sParent: "Orig.Cam.Right",
+                    mDataSource: {
+                        mSrcPkg: {
+                            sDTI: "/package/anycam/camera-db:1.0",
+                            sId: "rb_std_v02",
+                            sName: "RB Standard Cameras",
+                            sVersion: "2.0.0"
+                        },
+                        sSrcCamId: "test/camera/pano_test_120deg_48KP",
+                        mBlender: {
+                            sFile: "Demo_RS_01.blend",
+                            sScene: "Scene",
+                            sViewLayer: "View Layer"
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

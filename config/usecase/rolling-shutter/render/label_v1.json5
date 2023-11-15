@@ -1,0 +1,52 @@
+/*
+ * File: \label_v1.json5
+ * Created Date: Tuesday, November 14th 2023, 9:23:02 am
+ * Author: Christian Perwass (CR/AEC5)
+ * <LICENSE id="All-Rights-Reserved">
+ * Copyright (c) 2023 Robert Bosch GmbH and its subsidiaries
+ * </LICENSE>
+ */
+
+
+
+
+
+
+// <LICENSE id="CC BY 4.0">
+//
+//   Image-Render Workspace 'test'
+//   Copyright 2022 Robert Bosch GmbH and its subsidiaries
+//   
+//   This work is licensed under the 
+//   
+//       Creative Commons Attribution 4.0 International License.
+//   
+//   To view a copy of this license, visit 
+//       http://creativecommons.org/licenses/by/4.0/ 
+//   or send a letter to 
+//       Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
+//   
+//
+// </LICENSE>
+{
+    sDTI: "/catharsys/blender/render/output-list:1",
+	sId: "${filebasename}",
+
+	lSettings: [
+        "$import{settings/render_v1, blender/render/settings/render:1}",
+        "$import{settings/cycles_v1, blender/render/settings/cycles:1}",
+        {
+            sDTI: "/catharsys/blender/render/settings/main:1",
+            // Transform scene to camera frame, so that the active camera 
+            // is at the world origin. This is needed to ensure that the
+            // polynomial, pingen and LFT cameras render properly.
+            bTransformSceneToCameraFrame: false,
+        },
+
+    ],
+
+    lOutputs: [
+        "$import{output/at_label_v1, blender/render/output/anytruth/label:1}"
+    ]
+
+}

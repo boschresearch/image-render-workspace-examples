@@ -1,0 +1,55 @@
+
+// <LICENSE id="CC BY 4.0">
+//
+//   Image-Render Workspace 'test'
+//   Copyright 2022 Robert Bosch GmbH and its subsidiaries
+//   
+//   This work is licensed under the 
+//   
+//       Creative Commons Attribution 4.0 International License.
+//   
+//   To view a copy of this license, visit 
+//       http://creativecommons.org/licenses/by/4.0/ 
+//   or send a letter to 
+//       Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
+//   
+//
+// </LICENSE>
+{
+    sDTI: "/catharsys/manifest:1.1",
+    sId: "${filebasename}",
+
+    mActions: {
+        render: {
+            sDTI: "manifest/action:1",
+            lConfigs: [
+                { sId: "render", sDTI: "blender/render/output-list:1", sForm: "file/json", bAddToPath: false },
+                { sId: "cap", sDTI: "capture/rs:1", sForm: "file/json", bAddToPath: false },
+                { sId: "camset", sDTI: "camera-set:1", sForm: "file/json", bAddToPath: false },
+                { sId: "campose", sDTI: "camera-pose-path:1", sForm: "value" },
+                { sId: "mod", sDTI: "blender/modify:1", sForm: "file/json" },
+                { sId: "anim", sDTI: "blender/animate:1", sForm: "file/json" },
+            ],
+            lDeps: []
+        },
+        construct: {
+            sDTI: "manifest/action:1",
+            lConfigs: [
+                { sId: "con", sDTI: "blender/construct/rs/type/*:1", sForm: "file/json" },
+                { sId: "con-in", sDTI: "blender/construct/rs/input-id:1", sForm: "value" }
+            ],
+            lDeps: [ "render" ]
+        },
+        tonemap: {
+            sDTI: "manifest/action:1",
+            lConfigs: [
+                { sId: "tm-root", sDTI: "blender/tonemap/input-rel-path:1", sForm: "const-value", lValues: [".."] },
+                { sId: "tm-input", sDTI: "blender/tonemap/input-id:1", sForm: "value" },
+                { sId: "tm", sDTI: "blender/tonemap/type/*:1", sForm: "file/json" }
+            ],
+            lDeps: [ "construct" ]
+        },
+
+    }
+}
+

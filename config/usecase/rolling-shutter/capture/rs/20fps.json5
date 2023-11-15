@@ -1,0 +1,29 @@
+
+// <LICENSE id="CC BY 4.0">
+//
+//   Image-Render Workspace 'test'
+//   Copyright 2022 Robert Bosch GmbH and its subsidiaries
+//   
+//   This work is licensed under the 
+//   
+//       Creative Commons Attribution 4.0 International License.
+//   
+//   To view a copy of this license, visit 
+//       http://creativecommons.org/licenses/by/4.0/ 
+//   or send a letter to 
+//       Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
+//   
+//
+// </LICENSE>
+{
+    sDTI: "/catharsys/capture/rs:1.0",
+
+    sId: "${filebasename}",
+    dFPS: 20,
+    dFrameTime: 33.0e-3,
+    mExp: {
+        dExpPerLine: 10e-3,
+        dExpOffset: 0e-3,
+        lReadOutLinePattern: [0,2]
+    }
+}

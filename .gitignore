@@ -9,9 +9,10 @@ _output
 *.code-workspace
 .vscode
 .catharsys
+.cathgui
 *.blend1
 blend/Blender-*
 action-job*.json
 .nicegui
-.variants
+.variants*
 gui-web-user.json

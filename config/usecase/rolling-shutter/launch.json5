@@ -1,0 +1,103 @@
+
+// <LICENSE id="CC BY 4.0">
+//
+//   Image-Render Workspace 'test'
+//   Copyright 2022 Robert Bosch GmbH and its subsidiaries
+//   
+//   This work is licensed under the 
+//   
+//       Creative Commons Attribution 4.0 International License.
+//   
+//   To view a copy of this license, visit 
+//       http://creativecommons.org/licenses/by/4.0/ 
+//   or send a letter to 
+//       Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
+//   
+//
+// </LICENSE>
+{
+    sDTI: "/catharsys/launch:3.0",
+    sId: "${filebasename}",
+
+    mGlobalArgs: {
+        sDTI: "/catharsys/launch/args:1.1",
+        sTrialFile: "trial",
+        iFrameFirst: 0,
+        iFrameLast: 0,
+        iFrameStep: 1,
+        iRenderQuality: 32,
+        // sTopFolder: "test",
+        bDoProcess: true,
+        bDoOverwrite: true,
+        bDoStoreProcessData: false,
+
+        sRenderType: "image_v2",
+    },
+
+    mActions: {
+        "render": {
+            sDTI: "/catharsys/launch/action:1.0",
+            sActionDTI: "/catharsys/action/std/blender/render/rs:1.0",
+            mConfig: {
+                sDTI: "/catharsys/launch/args:1.1",
+                sExecFile: "exec/blender_auto",
+                iConfigGroups: 1,
+                iFrameGroups: 1
+            }
+        },
+        "render-depth": {
+            sDTI: "/catharsys/launch/action-alias:1.0",
+            sActionName: "render",
+            mConfig: {
+                sDTI: "/catharsys/launch/args:1.1",
+                sExecFile: "exec/blender_auto",
+                iConfigGroups: 1,
+                iFrameGroups: 1,
+                sRenderType: "pos3d_v1",
+            }
+        },
+        "render-label": {
+            sDTI: "/catharsys/launch/action-alias:1.0",
+            sActionName: "render",
+            mConfig: {
+                sDTI: "/catharsys/launch/args:1.1",
+                sExecFile: "exec/blender_auto",
+                iConfigGroups: 1,
+                iFrameGroups: 1,
+                sRenderType: "label_v1",
+            }
+        },
+        "construct": {
+            sDTI: "/catharsys/launch/action:1.0",
+            sActionDTI: "/catharsys/action/std/blender/post-render/proc-rs:1.0",
+            mConfig: {
+                sDTI: "/catharsys/launch/args:1.1",
+                sExecFile: "exec/py_std_v1",
+                iConfigGroups: 1,
+                iFrameGroups: 1
+            }
+        },
+        "construct-depth": {
+            sDTI: "/catharsys/launch/action-alias:1.0",
+            sActionName: "construct",
+            mConfig: {
+                sDTI: "/catharsys/launch/args:1.1",
+                sExecFile: "exec/py_std_v1",
+                iConfigGroups: 1,
+                iFrameGroups: 1,
+                sRenderType: "pos3d_v1",
+            }
+        },
+        tonemap: {
+            sDTI: "/catharsys/launch/action:1.0",
+            sActionDTI: "/catharsys/action/std/blender/post-render/tonemap:1.0",
+            mConfig: {
+                sDTI: "/catharsys/launch/args:1.1",
+                sExecFile: "exec/py_std_v1",
+                iConfigGroups: 1,
+                iFrameGroups: 1
+            }
+        },        
+    },
+
+}

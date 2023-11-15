@@ -1,0 +1,45 @@
+// <LICENSE id="CC BY 4.0">
+//
+//   Image-Render Workspace 'test'
+//   Copyright 2022 Robert Bosch GmbH and its subsidiaries
+//   
+//   This work is licensed under the 
+//   
+//       Creative Commons Attribution 4.0 International License.
+//   
+//   To view a copy of this license, visit 
+//       http://creativecommons.org/licenses/by/4.0/ 
+//   or send a letter to 
+//       Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
+//   
+//
+// </LICENSE>
+{
+    sDTI: "/catharsys/blender/tonemap/type/gamma:1.1",
+
+    sId: "tm-gamma-0_3-8bit",
+
+    // The source image value for minimal intensity (black)
+    fSrcBlackValue: 0.0,
+
+    // The source image value for maximal intensity (white)
+    fSrcWhiteValue: 0.5,
+
+    // The gamma factor
+    fGamma: 0.65,
+
+    // Overwrites image type specified in compositor.
+    // Since we are processing image files that come
+    // out of the rolling shutter construction,
+    // the image type is 'exr'.
+    sSrcImgType: "exr",
+
+    // The list of different output formats
+    lTrgImgFormat: [
+        {
+            sType: "png",
+            // The bit depth for png. Can also use 16 here.
+            iBitDepth: 8
+        },
+    ]
+}
