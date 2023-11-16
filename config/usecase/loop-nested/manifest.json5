@@ -26,8 +26,7 @@
                 { sId: "render", sDTI: "blender/render/output-list:1", sForm: "file/json", bAddToPath: false },
                 { sId: "cap", sDTI: "capture/std:1", sForm: "file/json", bAddToPath: false },
                 { sId: "cam", sDTI: "camera-name:1", sForm: "value", bAddToPath: false },
-                { sId: "loop_x", sDTI: "manifest/control/loop/*:*", sForm: "file/json", bAddToPath: true },
-                { sId: "loop_y", sDTI: "manifest/control/loop/*:*", sForm: "file/json", bAddToPath: true },
+                { sId: "nested-loop", sDTI: "manifest/control/loop/nested-range:1", sForm: "file/json", bAddToPath: true },
                 { sId: "mod", sDTI: "blender/modify:1", sForm: "file/json", bAddToPath: false },
             ],
             lDeps: []
