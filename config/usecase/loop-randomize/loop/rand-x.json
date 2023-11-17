@@ -15,6 +15,9 @@
 //
 // </LICENSE>
 {
+	// IMPORTANT: If you use verion 2.0 of this structure, 
+	//			  you MUST NOT use $L{%0} in the 'mIterationConfig' element.
+	//			  Simply use '%0' directly.
 	sDTI: "/catharsys/manifest/control/loop/range:1.0",
 	sId: "${filebasename}",
 
@@ -28,11 +31,12 @@
 	iStep: 1,
 
 	mIterationConfig: {
-        sId: "$L{%0}",
+		// In VERSION 2.x of this structure can use '%0' directly, without '$L{%0}'
+        sId: "%0",
 		
 		__globals__: {
 			// Create a random number generator using the string "rand-x-$L{%0}" as seed
-			rndX: "$rand.generator{rand-x-$L{%0}}",
+			rndX: "$rand.generator{rand-x-%0}",
 			// Get a random number using the 'rndX' random generator
 			fX: "$rand.uniform{$rndX, -1, 1}",
 		}

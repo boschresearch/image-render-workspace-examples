@@ -22,8 +22,8 @@
     mGlobalArgs: {
         sDTI: "/catharsys/launch/args:1.1",
         sTrialFile: "trial",
-        iFrameFirst: 0,
-        iFrameLast: 0,
+        iFrameFirst: 7,
+        iFrameLast: 7,
         iFrameStep: 1,
         iRenderQuality: 32,
         // sTopFolder: "test",
