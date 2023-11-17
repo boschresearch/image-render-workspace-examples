@@ -29,7 +29,14 @@
         campose: [ "Left/Pano/Test_120deg_48KP" ],
 
         // Rolling Shutter Construction Configs
-        con: ["construct/rs_10ms_v1"],
+        con: [
+            // Construct Rolling Shutter with 10ms exposure per line.
+            "construct/rs_10ms_v1",
+
+            // Construct rolling shutter with consecutive exposures
+            // for use in HDR construction.
+            "construct/rs_hdr_v1",
+        ],
         "con-in": ["ImageRaw"],
 
         // Tonemapping Configs
