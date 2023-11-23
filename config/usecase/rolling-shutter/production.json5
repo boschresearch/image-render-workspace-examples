@@ -19,7 +19,7 @@
                 "final-frame": {
                     sName: "Final Frame",
                     // This regular expression must match, for the folder
-                    // to be excepted.
+                    // to be accepted.
                     sRegExParseValue: "Frame_0+(?!$)(\\d+)$",
                     sRegExReplaceValue: "\\1",
                 }
