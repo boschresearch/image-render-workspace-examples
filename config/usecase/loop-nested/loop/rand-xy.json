@@ -25,6 +25,10 @@
 		iCntY: "${action:args:iConfigCountY}",
 	},
 
+	__func_locals__: {
+		mZwicky: { __includes__: ["zwicky"]},
+	},
+
 	lRanges: [
 		{
 			iMin: "${iStartX}",
@@ -57,6 +61,9 @@
 			fX: "$rand.uniform{$rndX, -1, 1}",
 			// Get a random number using the 'rndY' random generator
 			fY: "$rand.uniform{$rndY, -1, 1}",
+
+			// Get a random dictionary from a Zwicky box
+			mValues: "$rand.zwicky{$mZwicky}",
 		}
 	}
 }
