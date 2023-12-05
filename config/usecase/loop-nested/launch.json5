@@ -93,9 +93,6 @@
             mConfig: {
                 sDTI: "/catharsys/launch/args:1.1",
 
-                // Set the top folder name in the "_render" folder.
-                sTopFolder: "blend",
-
                 // The following two parameters are only useful when processing
                 // on an job scheduling system like LSF, where multiple jobs can be run in parallel.
                 //

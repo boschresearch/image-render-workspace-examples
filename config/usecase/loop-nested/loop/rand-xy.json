@@ -42,7 +42,7 @@
 		},
 	],
 
-	lActiveIndices: [[2,2], [1,3]],
+	// lActiveIndices: [[2,2], [1,3]],
 
 	mIterationConfig: {
 		// Iteration indices are available as lambda parameters %0, %1, %2, etc.
@@ -58,9 +58,9 @@
 			rndY: "$rand.generator{rand-y-%1}",
 
 			// Get a random number using the 'rndX' random generator
-			fX: "$rand.uniform{$rndX, -1, 1}",
+			fX: "$rand.uniform{$rndX, -2, 2}",
 			// Get a random number using the 'rndY' random generator
-			fY: "$rand.uniform{$rndY, -1, 1}",
+			fY: "$rand.uniform{$rndY, 5, 10}",
 
 			// Get a random dictionary from a Zwicky box
 			mValues: "$rand.zwicky{$mZwicky}",

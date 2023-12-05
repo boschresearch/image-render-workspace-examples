@@ -1,0 +1,27 @@
+{
+    sDTI: "/catharsys/production:1.0",
+
+    mGroups: {
+
+        data: {
+            sName: "Nested Loop Data",
+            sPathStructure: "!production/!rq/!project/?idx1/?idx2",
+            mVars: {
+                "idx1": {
+                    sName: "Index 1",
+                },
+                "idx2": {
+                    sName: "Index 2",
+                },
+            },
+            mArtefacts: {
+                image: {
+                    sDTI: "/catharsys/production/artefact/image/png:1.0",
+                    sName: "Image",
+                    sPathStructure: "Image/!frame",
+                },
+            }
+        },
+
+    }
+}

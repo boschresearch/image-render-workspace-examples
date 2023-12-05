@@ -1,0 +1,41 @@
+{
+    sDTI: "/catharsys/production/analyze:1.0",
+
+    sPathProdConfig: "production.json5",
+
+    lAnalyzeMissing: [
+        {
+            sName: "Images",
+            sGroupId: "data",
+            sGroupVarId: "idx2",
+            lArtTypeIds: ["image"],
+
+            // The expected values for the variable given in 'sGroupVarId'
+            // This list can be simply a list of strings or integers specifying the expected elements.
+            // For integers, a list element inside the list specifies a range.
+            // For example, [[1,4]] = [1,2,3,4]
+            lGroupVarValues: [[1,5]],
+
+            // optional, if defined (even as empty dictionary), the missing data
+            // output is printed to stdout
+            mPrint: {
+                // optional, if true prints ranges of consecutive integer indices
+                //           as list elements with first and last index.
+                //           For example, instead of printing [3,4,5,6] it prints [[3,6]].
+                //           Another example, [3,6,7,8,9] becomes [3,[6,9]].
+                bConcise: true,
+            },
+
+            // optional, if defined (even as empty dictionary), the missing data
+            // output is saved to an automatically generated filename.
+            mSave: {
+                // optional
+                // sPath: "${path-workspace}/missing.json",
+                
+                // optional
+                // iIndent: 2,
+            }
+        },
+    ],
+
+}
