@@ -1,0 +1,36 @@
+// <LICENSE id="CC BY 4.0">
+//
+//   Image-Render Workspace 'simple'
+//   Copyright 2022 Robert Bosch GmbH and its subsidiaries
+//   
+//   This work is licensed under the 
+//   
+//       Creative Commons Attribution 4.0 International License.
+//   
+//   To view a copy of this license, visit 
+//       http://creativecommons.org/licenses/by/4.0/ 
+//   or send a letter to 
+//       Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
+//   
+//
+// </LICENSE>
+{
+	// IMPORTANT: If you use verion 2.0 of this structure, 
+	//			  you MUST NOT use $L{%0} in the 'mIterationConfig' element.
+	//			  Simply use '%0' directly.
+	sDTI: "/catharsys/manifest/control/loop/range:2.0",
+	sId: "${filebasename}",
+
+	iMin: 0,
+	iMax: 10,
+	iStep: 1,
+
+	mIterationConfig: {
+		// In VERSION 2.x of this structure can use '%0' directly, without '$L{%0}'
+        sId: "%0",
+		
+		__globals__: {
+			fGenWeightDepth: "$float{$prod{%0, 0.1}}",
+		},
+	}
+}

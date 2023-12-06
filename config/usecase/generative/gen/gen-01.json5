@@ -1,0 +1,54 @@
+{
+    sDTI: "/catharsys/generative/data:1",
+
+    __locals__: {
+        sModelPath: "${path-workspace}/../image-render-generative/models" // <- add here the path to the models folder
+    },
+
+    mInputs: {
+        // here, all relative path to the outputs of previous results should be added
+        // these will be referenced in the sInput to the control nets below
+        Depth: "AT_Depth/depth/Preview",
+        // OpenPose: "AT_Label/label/PoseImage"
+    },
+
+    mConfig: {
+        mParams: {
+            pretrained_model_name_or_path: "${sModelPath}/stable-diffusion-v1-5",
+            local_files_only: true,
+        },        
+        mControlNets: {
+            Depth: {
+                // these parameters are directly passed to from_pretrained
+                mParams: {
+                    pretrained_model_name_or_path: "${sModelPath}/sd-controlnet-depth",
+                    local_files_only: true,
+                },
+                fWeight: "$float{$fGenWeightDepth}",
+                sInput: "Depth",
+                mPreprocess: [
+                    "Normalize",
+                    "Invert",
+                ]
+            },
+            // OpenPose: {
+            //     mParams: {
+            //         pretrained_model_name_or_path: "${sModelPath}/control_v11p_sd15_openpose",
+            //         local_files_only: true,
+            //     },
+            //     fWeight: "$float{$fGenWeightOpenPose}",
+            //     sInput: "OpenPose",
+            // }
+        },
+        // sPrompt: "${sGenPrompt}",
+        // sNegativePrompt: "nothing",
+        // sPrompt: "people in strong rain and lightning in modern german town, walking and talking, facing camera, 8K UHD, high quality people, small details, distant people",
+        // sNegativePrompt: "disfigured, bad, immature, cartoon, anime, 3d, painting, b&w, monochrome, lowres, bad anatomy, worst quality, low quality",
+        sPrompt: "$sPrompt",
+        sNegativePrompt: "$sNegativePrompt",
+        iSeed: "$int{$iGenSeed}",
+        iNumSteps: "$int{$iGenIterSteps}",
+        iWidth: "$iGenWidth",
+        iHeight: "$iGenHeight",
+    }
+}

@@ -1,0 +1,149 @@
+/*
+ * File: \config\control_net_nightly\generative\cnet_nightly.json
+ * Created Date: Wednesday, April 19th 2023, 11:13:38 am
+ * Created by: Fortmeier Dirk (BEG/ESD1)
+ * <LICENSE id="All-Rights-Reserved">
+ * Copyright (c) 2023 Robert Bosch GmbH and its subsidiaries
+ * </LICENSE>
+ */
+
+{
+    sDTI: "/catharsys/generative/paint_pose_data:1",
+
+    // this config instructs the paint pose action on painting openpose pose images
+    // based on https://github.com/lllyasviel/ControlNet/tree/main/annotator/openpose
+    // it seems like open pose images are performed by blending two layers
+    // first layer: joint connections of body pose, weighted by 0.6
+    // second layer: everything else, joints, hand bones and joints, face landmarks
+    lLayers: [
+        {
+            sName: "Layer0",
+            fWeight: 0.6,
+            lLines: [
+                {sP1: "AT.Label;Std;Neck", sP2:"AT.Label;Std;Right_Shoulder", lColor: [255, 0, 0]},
+                {sP1: "AT.Label;Std;Neck", sP2:"AT.Label;Std;Left_Shoulder", lColor: [255, 85, 0]},
+                {sP1: "AT.Label;Std;Right_Shoulder", sP2:"AT.Label;Std;Right_Elbow", lColor: [255, 170, 0]},
+                {sP1: "AT.Label;Std;Right_Elbow", sP2:"AT.Label;Std;Right_Wrist", lColor: [255, 255, 0]},
+                {sP1: "AT.Label;Std;Left_Shoulder", sP2:"AT.Label;Std;Left_Elbow", lColor: [170, 255, 0]},
+                {sP1: "AT.Label;Std;Left_Elbow", sP2:"AT.Label;Std;Left_Wrist", lColor: [85, 255, 0]},
+                {sP1: "AT.Label;Std;Neck", sP2:"AT.Label;Std;Right_Hip", lColor: [0, 255, 0]},
+                {sP1: "AT.Label;Std;Right_Hip", sP2:"AT.Label;Std;Right_Knee", lColor: [0, 255, 85]},
+                {sP1: "AT.Label;Std;Right_Knee", sP2:"AT.Label;Std;Right_Ankle", lColor: [0, 255, 170]},
+                {sP1: "AT.Label;Std;Neck", sP2:"AT.Label;Std;Left_Hip", lColor: [0, 255, 255]},
+                {sP1: "AT.Label;Std;Left_Hip", sP2:"AT.Label;Std;Left_Knee", lColor: [0, 170, 255]},
+                {sP1: "AT.Label;Std;Left_Knee", sP2:"AT.Label;Std;Left_Ankle", lColor: [0, 85, 255]},
+                {sP1: "AT.Label;Std;Neck", sP2:"AT.Label;Std;Nose", lColor: [0, 0, 255]},
+                {sP1: "AT.Label;Std;Nose", sP2:"AT.Label;Std;Right_Eye", lColor: [85, 0, 255]},
+                {sP1: "AT.Label;Std;Right_Eye", sP2:"AT.Label;Std;Right_Ear", lColor: [170, 0, 255]},
+                {sP1: "AT.Label;Std;Nose", sP2:"AT.Label;Std;Left_Eye", lColor: [255, 0, 255]},
+                {sP1: "AT.Label;Std;Left_Eye", sP2:"AT.Label;Std;Left_Ear", lColor: [255, 0, 170]},
+            ],
+        },
+        {
+            sName: "Layer1",
+            lLines: [
+                {sP1: "thumb.01.R", sP2: "thumb.02.R", lColor: [255, 145, 0], iSize: 2, bLine:true},
+                {sP1: "thumb.02.R", sP2: "thumb.03.R", lColor: [255, 218, 0], iSize: 2, bLine:true},
+                {sP1: "hand.R", sP2: "f_index.01.R", lColor: [255, 0, 0], iSize: 2, bLine:true},
+                {sP1: "f_index.01.R", sP2: "f_index.02.R", lColor: [145, 255, 0], iSize: 2, bLine:true},
+                {sP1: "f_index.02.R", sP2: "f_index.03.R", lColor: [72, 255, 0], iSize: 2, bLine:true},
+                {sP1: "f_index.03.R", sP2: "f_index.03.R", bP1UseTail: true, lColor: [0, 255, 0], iSize: 2, bLine:true},
+                {sP1: "hand.R", sP2: "f_middle.01.R", lColor: [255, 0, 0], iSize: 2, bLine:true},
+                {sP1: "f_middle.01.R", sP2: "f_middle.02.R", lColor: [0, 255, 145], iSize: 2, bLine:true},
+                {sP1: "f_middle.02.R", sP2: "f_middle.03.R", lColor: [0, 255, 218], iSize: 2, bLine:true},
+                {sP1: "f_middle.03.R", sP2: "f_middle.03.R", bP1UseTail: true, lColor: [0, 218, 255], iSize: 2, bLine:true},
+                {sP1: "hand.R", sP2: "f_ring.01.R", lColor: [255, 0, 0], iSize: 2, bLine:true},
+                {sP1: "f_ring.01.R", sP2: "f_ring.02.R", lColor: [0, 72, 255], iSize: 2, bLine:true},
+                {sP1: "f_ring.02.R", sP2: "f_ring.03.R", lColor: [0, 0, 255], iSize: 2, bLine:true},
+                {sP1: "f_ring.03.R", sP2: "f_ring.03.R", bP1UseTail: true, lColor: [72, 0, 255], iSize: 2, bLine:true},
+                {sP1: "hand.R", sP2: "f_pinky.01.R", lColor: [255, 0, 0], iSize: 2, bLine:true},
+                {sP1: "f_pinky.01.R", sP2: "f_pinky.02.R", lColor: [218, 0, 255], iSize: 2, bLine:true},
+                {sP1: "f_pinky.02.R", sP2: "f_pinky.03.R", lColor: [255, 0, 218], iSize: 2, bLine:true},
+                {sP1: "f_pinky.03.R", sP2: "f_pinky.03.R", bP1UseTail: true, lColor: [255, 0, 145], iSize: 2, bLine:true},
+                {sP1: "thumb.01.L", sP2: "thumb.02.L", lColor: [255, 145, 0], iSize: 2, bLine:true},
+                {sP1: "thumb.02.L", sP2: "thumb.03.L", lColor: [255, 218, 0], iSize: 2, bLine:true},
+                {sP1: "hand.L", sP2: "f_index.01.L", lColor: [255, 0, 0], iSize: 2, bLine:true},
+                {sP1: "f_index.01.L", sP2: "f_index.02.L", lColor: [145, 255, 0], iSize: 2, bLine:true},
+                {sP1: "f_index.02.L", sP2: "f_index.03.L", lColor: [72, 255, 0], iSize: 2, bLine:true},
+                {sP1: "f_index.03.L", sP2: "f_index.03.L", bP1UseTail: true, lColor: [0, 255, 0], iSize: 2, bLine:true},
+                {sP1: "hand.L", sP2: "f_middle.01.L", lColor: [255, 0, 0], iSize: 2, bLine:true},
+                {sP1: "f_middle.01.L", sP2: "f_middle.02.L", lColor: [0, 255, 145], iSize: 2, bLine:true},
+                {sP1: "f_middle.02.L", sP2: "f_middle.03.L", lColor: [0, 255, 218], iSize: 2, bLine:true},
+                {sP1: "f_middle.03.L", sP2: "f_middle.03.L", bP1UseTail: true, lColor: [0, 218, 255], iSize: 2, bLine:true},
+                {sP1: "hand.L", sP2: "f_ring.01.L", lColor: [255, 0, 0], iSize: 2, bLine:true},
+                {sP1: "f_ring.01.L", sP2: "f_ring.02.L", lColor: [0, 72, 255], iSize: 2, bLine:true},
+                {sP1: "f_ring.02.L", sP2: "f_ring.03.L", lColor: [0, 0, 255], iSize: 2, bLine:true},
+                {sP1: "f_ring.03.L", sP2: "f_ring.03.L", bP1UseTail: true, lColor: [72, 0, 255], iSize: 2, bLine:true},
+                {sP1: "hand.L", sP2: "f_pinky.01.L", lColor: [255, 0, 0], iSize: 2, bLine:true},
+                {sP1: "f_pinky.01.L", sP2: "f_pinky.02.L", lColor: [218, 0, 255], iSize: 2, bLine:true},
+                {sP1: "f_pinky.02.L", sP2: "f_pinky.03.L", lColor: [255, 0, 218], iSize: 2, bLine:true},
+                {sP1: "f_pinky.03.L", sP2: "f_pinky.03.L", bP1UseTail: true, lColor: [255, 0, 145], iSize: 2, bLine:true},
+
+
+            ],
+            lPoints: [
+                {sP: "AT.Label;Std;Nose", lColor: [255, 0, 0]},
+                {sP: "AT.Label;Std;Neck", lColor: [255, 85, 0]},
+                {sP: "AT.Label;Std;Right_Shoulder", lColor: [255, 170, 0]},
+                {sP: "AT.Label;Std;Right_Elbow", lColor: [255, 255, 0]},
+                {sP: "AT.Label;Std;Right_Wrist", lColor: [170, 255, 0]},
+                {sP: "AT.Label;Std;Left_Shoulder", lColor: [85, 255, 0]},
+                {sP: "AT.Label;Std;Left_Elbow", lColor: [0, 255, 0]},
+                {sP: "AT.Label;Std;Left_Wrist", lColor: [0, 255, 85]},
+                {sP: "AT.Label;Std;Right_Hip", lColor: [0, 255, 170]},
+                {sP: "AT.Label;Std;Right_Knee", lColor: [0, 255, 255]},
+                {sP: "AT.Label;Std;Right_Ankle", lColor: [0, 170, 255]},
+                {sP: "AT.Label;Std;Left_Hip", lColor: [0, 85, 255]},
+                {sP: "AT.Label;Std;Left_Knee", lColor: [0, 0, 255]},
+                {sP: "AT.Label;Std;Left_Ankle", lColor: [85, 0, 255]},
+                {sP: "AT.Label;Std;Right_Eye", lColor: [170, 0, 255]},
+                {sP: "AT.Label;Std;Left_Eye", lColor: [255, 0, 255]},
+                {sP: "AT.Label;Std;Right_Ear", lColor: [255, 0, 170]},
+                {sP: "AT.Label;Std;Left_Ear", lColor: [255, 0, 85]},
+
+                {sP: "hand.R", lColor: [0, 0, 255], iSize: 4},
+                {sP: "thumb.01.R", lColor: [0, 0, 255], iSize: 4},
+                {sP: "thumb.02.R", lColor: [0, 0, 255], iSize: 4},
+                {sP: "thumb.03.R", lColor: [0, 0, 255], iSize: 4},
+                {sP: "f_index.01.R", lColor: [0, 0, 255], iSize: 4},
+                {sP: "f_index.02.R", lColor: [0, 0, 255], iSize: 4},
+                {sP: "f_index.03.R", lColor: [0, 0, 255], iSize: 4},
+                {sP: "f_index.03.R", bPUseTail: true, lColor: [0, 0, 255], iSize: 4},
+                {sP: "f_middle.01.R", lColor: [0, 0, 255], iSize: 4},
+                {sP: "f_middle.02.R", lColor: [0, 0, 255], iSize: 4},
+                {sP: "f_middle.03.R", lColor: [0, 0, 255], iSize: 4},
+                {sP: "f_middle.03.R", bPUseTail: true, lColor: [0, 0, 255], iSize: 4},
+                {sP: "f_ring.01.R", lColor: [0, 0, 255], iSize: 4},
+                {sP: "f_ring.02.R", lColor: [0, 0, 255], iSize: 4},
+                {sP: "f_ring.03.R", lColor: [0, 0, 255], iSize: 4},
+                {sP: "f_ring.03.R", bPUseTail: true, lColor: [0, 0, 255], iSize: 4},
+                {sP: "f_pinky.01.R", lColor: [0, 0, 255], iSize: 4},
+                {sP: "f_pinky.02.R", lColor: [0, 0, 255], iSize: 4},
+                {sP: "f_pinky.03.R", lColor: [0, 0, 255], iSize: 4},
+                {sP: "f_pinky.03.R", bPUseTail: true, lColor: [0, 0, 255], iSize: 4},
+                {sP: "hand.L", lColor: [0, 0, 255], iSize: 4},
+                {sP: "thumb.01.L", lColor: [0, 0, 255], iSize: 4},
+                {sP: "thumb.02.L", lColor: [0, 0, 255], iSize: 4},
+                {sP: "thumb.03.L", lColor: [0, 0, 255], iSize: 4},
+                {sP: "f_index.01.L", lColor: [0, 0, 255], iSize: 4},
+                {sP: "f_index.02.L", lColor: [0, 0, 255], iSize: 4},
+                {sP: "f_index.03.L", lColor: [0, 0, 255], iSize: 4},
+                {sP: "f_index.03.L", bPUseTail: true, lColor: [0, 0, 255], iSize: 4},
+                {sP: "f_middle.01.L", lColor: [0, 0, 255], iSize: 4},
+                {sP: "f_middle.02.L", lColor: [0, 0, 255], iSize: 4},
+                {sP: "f_middle.03.L", lColor: [0, 0, 255], iSize: 4},
+                {sP: "f_middle.03.L", bPUseTail: true, lColor: [0, 0, 255], iSize: 4},
+                {sP: "f_ring.01.L", lColor: [0, 0, 255], iSize: 4},
+                {sP: "f_ring.02.L", lColor: [0, 0, 255], iSize: 4},
+                {sP: "f_ring.03.L", lColor: [0, 0, 255], iSize: 4},
+                {sP: "f_ring.03.L", bPUseTail: true, lColor: [0, 0, 255], iSize: 4},
+                {sP: "f_pinky.01.L", lColor: [0, 0, 255], iSize: 4},
+                {sP: "f_pinky.02.L", lColor: [0, 0, 255], iSize: 4},
+                {sP: "f_pinky.03.L", lColor: [0, 0, 255], iSize: 4},
+                {sP: "f_pinky.03.L", bPUseTail: true, lColor: [0, 0, 255], iSize: 4},
+
+            ]
+        }        
+    ]
+
+}
