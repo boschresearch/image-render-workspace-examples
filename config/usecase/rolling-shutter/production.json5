@@ -68,7 +68,7 @@
                 "construct": {
                     sName: "Construction",
                     // This regular expression must match, for the folder
-                    // to be excepted.
+                    // to be accepted.
                     sRegExParseValue: "^(?!Frame_)(.+)",
                     // sRegExReplaceValue: "\\1",
                 }
