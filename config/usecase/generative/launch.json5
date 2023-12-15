@@ -140,8 +140,9 @@
                 // sExecFile: "../exec/py_lsf_v1", // <- use this when using lsf
                 sExecFile: "exec-py",
                 bDoOverwrite: true,
-                iConfigsPerGroup: 100,
+                iConfigsPerGroup: 4,
                 iFrameGroups: 1,
+                iMaxLocalWorkers: 5,
 
               //  iConfigStart: 1,
                // iConfigCount: 1, //config count? different depth,label,pose every time? 

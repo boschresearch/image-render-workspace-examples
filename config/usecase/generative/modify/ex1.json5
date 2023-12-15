@@ -17,10 +17,10 @@
 {
     sDTI: "/catharsys/blender/modify:1.0",
 
-    sId: "${folder}/${filebasename}",
+    sId: "${filebasename}",
     
     __globals__: {
-        fZ: 0,
+        fZ: 2.0,
     },
 
     // A program modifier allows the execution of modifiers of any type
@@ -38,6 +38,9 @@
 
                 // The location where the object is placed
                 lLocation: ["$fX", "$fY", "$fZ"],
+
+                // The absolute rotation of the object in Euler values
+                lRotationEuler_deg: [45, 0, 90],
 
                 // Switch to enable/disable generator.
                 // This can be helpful for randomized scenarios, where this can be a variable.

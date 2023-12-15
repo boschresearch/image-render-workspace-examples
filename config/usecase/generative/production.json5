@@ -1,0 +1,47 @@
+{
+    sDTI: "/catharsys/production:1.0",
+
+    mGroups: {
+
+        std: {
+            sName: "Generative",
+            sPathStructure: "!production/!rq/!project/?idx",
+            mVars: {
+                idx: {
+                    sName: "Configuration Index",
+                },
+            },
+            mArtefacts: {
+                image: {
+                    sDTI: "/catharsys/production/artefact/image/png:1.0",
+                    sName: "Image",
+                    sPathStructure: "Image/!frame",
+                },
+                depth: {
+                    sDTI: "/catharsys/production/artefact/image/png:1.0",
+                    sName: "Depth and a very-long_text/to/test the display of long labels",
+                    sPathStructure: "AT_Depth/depth/Preview/!frame",
+                },
+                gen: {
+                    sDTI: "/catharsys/production/artefact/image/png:1.0",
+                    sName: "Generative",
+                    sPathStructure: "Takuma-Diffusers/?pidx/?dwidx/?genframe",
+                    mVars: {
+                        pidx: {
+                            sName: "Prompt Index",
+                        },
+                        dwidx: {
+                            sName: "Depth Weight Index",
+                        },
+                        genframe: {
+                            sName: "Image",
+                            sRegExParseValue: "^Frame_(\\d+)_uint8png\\.png",
+                            sRegExReplaceValue: "\\1",
+                        },
+                    }
+                }
+            }
+        },
+
+    }
+}

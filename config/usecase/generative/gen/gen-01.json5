@@ -2,7 +2,7 @@
     sDTI: "/catharsys/generative/data:1",
 
     __locals__: {
-        sModelPath: "${path-workspace}/../image-render-generative/models" // <- add here the path to the models folder
+        sModelPath: "C:/Users/chris/Documents/Code/catharsys/image-render-setup/repos/image-render-generative/models" // <- add here the path to the models folder
     },
 
     mInputs: {
