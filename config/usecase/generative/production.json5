@@ -6,9 +6,19 @@
         std: {
             sName: "Generative",
             sPathStructure: "!production/!rq/!project/?idx",
+            mCategories: {
+                bad: {
+                    sDTI: "/catharsys/production/category/boolean:1.0",
+                    sName: "Do not use",
+                    sIconTrue: "star",
+                    sIconFalse: "star_border",
+                    sIconColor: "red",
+                }
+            },
             mVars: {
                 idx: {
                     sName: "Configuration Index",
+                    lCategories: ["bad"],
                 },
             },
             mArtefacts: {
