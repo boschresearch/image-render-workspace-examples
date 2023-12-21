@@ -10,15 +10,40 @@
                 bad: {
                     sDTI: "/catharsys/production/category/boolean:1.0",
                     sName: "Do not use",
+                    // optional, default value, if not set, the default value is
+                    bDefautValue: false,
                     sIconTrue: "star",
                     sIconFalse: "star_border",
                     sIconColor: "red",
+                },
+                "quality": {
+                    "sDTI": "/catharsys/production/category/boolean-group:1.0",
+                    "sName": "Quality",
+                    "iDefaultValue": 1,
+                    "lGroup": [
+                        {
+                            "sDescription": "Low quality",
+                            "sIcon": "thumb_down",
+                            "sColor": "red"
+                        },
+                        {
+                            "sDescription": "Medium quality",
+                            "sIcon": "thumbs_up_down",
+                            "sColor": "yellow"
+                        },
+                        {
+                            "sDescription": "Good quality",
+                            "sIcon": "thumb_up",
+                            "sColor": "green"
+                        }
+                    ]
                 }
+
             },
             mVars: {
                 idx: {
                     sName: "Configuration Index",
-                    lCategories: ["bad"],
+                    lCategories: ["bad", "quality"],
                 },
             },
             mArtefacts: {
@@ -39,6 +64,7 @@
                     mVars: {
                         pidx: {
                             sName: "Prompt Index",
+                            lCategories: ["bad", "quality"],
                         },
                         dwidx: {
                             sName: "Depth Weight Index",
