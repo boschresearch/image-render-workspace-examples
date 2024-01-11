@@ -46,6 +46,13 @@
                     lCategories: ["bad", "quality"],
                 },
             },
+            // The 'mSystenVars' block is optional. It can be used to define
+            // categories for the Catharsys system variables.
+            mSystemVars: {
+                frame: {
+                    lCategories: ["bad", "quality"],
+                }
+            },
             mArtefacts: {
                 image: {
                     sDTI: "/catharsys/production/artefact/image/png:1.0",
@@ -60,7 +67,7 @@
                 gen: {
                     sDTI: "/catharsys/production/artefact/image/png:1.0",
                     sName: "Generative",
-                    sPathStructure: "Takuma-Diffusers/?pidx/?dwidx/?genframe",
+                    sPathStructure: "Takuma-Diffusers/?pidx/?dwidx/?frame",
                     mVars: {
                         pidx: {
                             sName: "Prompt Index",
@@ -69,15 +76,15 @@
                         dwidx: {
                             sName: "Depth Weight Index",
                         },
-                        genframe: {
+                        frame: {
                             sName: "Image",
-                            sRegExParseValue: "^Frame_(\\d+)_uint8png\\.png",
+                            sRegExParseValue: "^Frame_[0]*(\\d+)_uint8png\\.png",
                             sRegExReplaceValue: "\\1",
                         },
                     }
                 }
             }
         },
-
+    
     }
 }
