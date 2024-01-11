@@ -49,7 +49,7 @@
         iFrameFirst: 0,
 
         // Index of the last frame to render
-        iFrameLast: 0,
+        iFrameLast: 1,
 
         // Step between frames
         iFrameStep: 1,
@@ -70,7 +70,7 @@
 
         // Flag whether to overwrite already created data.
         // If false, processes where the result data is already present are skipped.
-        bDoOverwrite: true,
+        bDoOverwrite: false,
 
         // Flag whether to store the data the processing is based on. 
         // For example, for the Blender render action the modified Blender file is
@@ -140,8 +140,9 @@
                 // sExecFile: "../exec/py_lsf_v1", // <- use this when using lsf
                 sExecFile: "exec-py",
                 bDoOverwrite: true,
-                iConfigsPerGroup: 100,
+                iConfigsPerGroup: 4,
                 iFrameGroups: 1,
+                iMaxLocalWorkers: 1,
 
               //  iConfigStart: 1,
                // iConfigCount: 1, //config count? different depth,label,pose every time? 

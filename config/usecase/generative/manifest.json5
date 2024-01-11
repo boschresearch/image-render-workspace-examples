@@ -26,8 +26,8 @@
                 { sId: "render", sDTI: "blender/render/output-list:1", sForm: "file/json", bAddToPath: false },
                 { sId: "cap", sDTI: "capture/std:1", sForm: "file/json", bAddToPath: false },
                 { sId: "cam", sDTI: "camera-name:1", sForm: "value", bAddToPath: false },
-                // { sId: "loop_y", sDTI: "manifest/control/loop/*:*", sForm: "file/json", bAddToPath: true },
-                // { sId: "mod", sDTI: "blender/modify:1", sForm: "file/json", bAddToPath: false },
+                { sId: "loop_position", sDTI: "manifest/control/loop/*:*", sForm: "file/json", bAddToPath: true },
+                { sId: "mod", sDTI: "blender/modify:1", sForm: "file/json", bAddToPath: false },
             ],
             lDeps: []
         },
@@ -49,6 +49,7 @@
             sDTI: "manifest/action:1",
             lConfigs: [
                 { sId: "cnet_model", sDTI: "/catharsys/generative/model-id:1", sForm: "value", bAddToPath: true },
+                { sId: "loop_gen_prompt", sDTI: "manifest/control/loop/*:*", sForm: "file/json", bAddToPath: true },
                 { sId: "loop_depth_weight", sDTI: "manifest/control/loop/*:*", sForm: "file/json", bAddToPath: true },
                 { sId: "cnet_config", sDTI: "/catharsys/generative/data:1", sForm: "file/json", bAddToPath: false  },
             ],

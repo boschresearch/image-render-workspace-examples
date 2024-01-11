@@ -22,13 +22,17 @@
     xRandomSeed: 1,
 
     __globals__: {
+        iPositionCount: 2,
+
         iGenSeed: 1,
         iGenIterSteps: 20,
-        iGenWidth: 256,
-        iGenHeight: 256,
-        fGenWeightDepth: 0.5,
+        iGenWidth: 512,
+        iGenHeight: 512,
+        fGenWeightDepth: 0.0,
 
-        sPrompt: "an painting in the style of gerhard richter, with lots of colors, abstract forms, and a flower",
+        // The variable "sPrompt" is defined by the loop "loop/gen-prompt"
+        // sPrompt: "a happy dog",
+        // sPrompt: "a painting in the style of gerhard richter, with lots of colors, abstract forms, and a mokey face",
         sNegativePrompt: "disfigured, bad, immature, cartoon, anime, 3d, painting, b&w, monochrome, lowres, bad anatomy, worst quality, low quality",
 
     },
@@ -43,8 +47,13 @@
         cap: ["capture"],
         cam: ["Cam.Pin.Std.53deg_FHD"],
 
+        loop_position: ["loop/position"],
+        mod: ["modify/ex1"],
+
         depth: ["depth"],
+
         cnet_model: ["Takuma-Diffusers"],
+        loop_gen_prompt: ["loop/gen-prompt"],
         loop_depth_weight: ["loop/depth-weight"],
         cnet_config: ["gen/gen-01"],
     },
