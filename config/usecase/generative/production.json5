@@ -73,7 +73,7 @@
                     lCategories: ["bad", "quality"],
                 },
             },
-            // The 'mSystenVars' block is optional. It can be used to define
+            // The 'mSystemVars' block is optional. It can be used to define
             // categories for the Catharsys system variables.
             mSystemVars: {
                 // The 'frame' variable is a Catharsys system variable.
