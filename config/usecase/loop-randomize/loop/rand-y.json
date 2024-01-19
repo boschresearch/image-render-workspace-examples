@@ -39,7 +39,7 @@
 			// Create a random number generator using the string "rand-y-$L{%0}" as seed
 			rndY: "$rand.generator{rand-y-%0}",
 			// Get a random number using the 'rndY' random generator
-			fY: "$rand.uniform{$rndY, -1, 1}",
+			fY: "$rand.uniform{$rndY, 5, 15}",
 		}
 	}
 }

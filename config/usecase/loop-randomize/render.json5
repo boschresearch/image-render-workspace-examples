@@ -20,8 +20,14 @@
 	sId: "${filebasename}",
 
 	lSettings: [
-        // We don't need any setting for the renderer in this case, because
-        // we only store a blender file as result of the action.
+        {
+            // Settings for the render engine.
+            // This is the same as the settings in the render panel.
+            // For example, the element 'engine' refers to 'bpy.context.scene.render.engine'.
+	        sDTI: "/catharsys/blender/render/settings/render:1",
+            // Set the render engine to CYCLES.
+            engine: "CYCLES",
+        }
     ],
 
     lOutputs: [
@@ -46,7 +52,12 @@
                 ]
             }
 
-        }
+        },
+        {
+            sDTI: "/catharsys/blender/render/output/anytruth/pos3d:1",
+            sId: "${filebasename}",
+        },
+
     ] // lOutputs
 }
 

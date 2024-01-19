@@ -33,6 +33,8 @@
         loop_x: ["loop/rand-x" ],
         loop_y: ["loop/rand-y" ],
         mod: ["modify/ex1", "modify/ex2" ],
+
+        depth: ["depth"],
     },
 
     mBlender: {

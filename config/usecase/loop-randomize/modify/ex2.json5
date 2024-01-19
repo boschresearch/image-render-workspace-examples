@@ -17,7 +17,7 @@
 {
     sDTI: "/catharsys/blender/modify:1.0",
 
-    sId: "${folder}/${filebasename}",
+    sId: "${filebasename}",
     
     __globals__: {
         fZ: 1,
@@ -26,6 +26,30 @@
     // A program modifier allows the execution of modifiers of any type
     // in a specific order.
     mProgram: { lModifier: [
+        { sDTI: "/catharsys/blender/modify/evaluate:1", mData: {
+
+            // This evaluator executes a python script.
+            // The return value of this script is a dictionary variable
+            // with the name 'dicResult'. This dictionary is mapped to
+            // the config variable 'result' in this case.
+            "result": {
+
+                sDTI: "/catharsys/blender/modify/evaluate/py/script:1",
+                
+                lApplyModes: ["INIT"],
+
+                // The name of the python script.
+                // The path to this file is relative this json file path,
+                // if it is not an absolute path.
+                sScriptFilename: "add-lights.py",
+
+                mGlobals: {
+                    sName: "MyLight",
+                    fEnergy: 1000,
+                    lPosition: [-2, 0, 3],
+                },
+            },
+        }},
 
         { sDTI: "/catharsys/blender/generate/in-program:1", mData: { 
             // List of generators. 

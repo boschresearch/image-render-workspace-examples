@@ -18,7 +18,7 @@
 	// IMPORTANT: If you use verion 2.0 of this structure, 
 	//			  you MUST NOT use $L{%0} in the 'mIterationConfig' element.
 	//			  Simply use '%0' directly.
-	sDTI: "/catharsys/manifest/control/loop/range:1.0",
+	sDTI: "/catharsys/manifest/control/loop/range:2.0",
 	sId: "${filebasename}",
 
 	__locals__: {
@@ -38,7 +38,7 @@
 			// Create a random number generator using the string "rand-x-$L{%0}" as seed
 			rndX: "$rand.generator{rand-x-%0}",
 			// Get a random number using the 'rndX' random generator
-			fX: "$rand.uniform{$rndX, -1, 1}",
+			fX: "$rand.uniform{$rndX, -5, 5}",
 		}
 	}
 }

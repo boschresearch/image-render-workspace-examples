@@ -1,0 +1,68 @@
+{
+    sDTI: "/catharsys/production:1.0",
+
+    mGroups: {
+
+        std: {
+            sName: "Generative",
+            sPathStructure: "!production/!rq/!project/?idx_x/?idx_y/?mod",
+            // The 'mCategories' block is optional. It can be used to define
+            // categories for the path structure variables.
+            mCategories: {
+                // User defined category 'bad'
+                fav: {
+                    // The DTI of the category. In this case, it is a boolean category.
+                    sDTI: "/catharsys/production/category/boolean:1.0",
+                    // The name of the category, used for display
+                    sName: "Favourite",
+                    // optional, default value, if not set, the default value is false
+                    bDefautValue: false,
+                    // the icon to use when the value is true.
+                    // The available icon names can be found here: https://fonts.google.com/icons?icon.set=Material+Icons
+                    sIconTrue: "star",
+                    // the icon to use when the value is false.
+                    sIconFalse: "star_border",
+                    // the color to use when the value is true.
+                    sIconColor: "red",
+                },
+            },
+            mVars: {
+                idx_x: {
+                    sName: "X",
+                    lCategories: ["fav"],
+                },
+                idx_y: {
+                    sName: "Y",
+                    lCategories: ["fav"],
+                },
+                mod: {
+                    sName: "Modificator",
+                    lCategories: ["fav"],
+                },
+            },
+            // The 'mSystemVars' block is optional. It can be used to define
+            // categories for the Catharsys system variables.
+            mSystemVars: {
+                // The 'frame' variable is a Catharsys system variable.
+                // It is used to define the frame of the production.
+                frame: {
+                    // currently, only the 'lCategories' array is supported.
+                    lCategories: ["fav"],
+                }
+            },
+            mArtefacts: {
+                image: {
+                    sDTI: "/catharsys/production/artefact/image/png:1.0",
+                    sName: "Image",
+                    sPathStructure: "Image/!frame",
+                },
+                depth: {
+                    sDTI: "/catharsys/production/artefact/image/png:1.0",
+                    sName: "Depth",
+                    sPathStructure: "AT_Depth/depth/Preview/!frame",
+                },
+            }
+        },
+    
+    }
+}

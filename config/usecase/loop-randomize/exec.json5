@@ -28,7 +28,7 @@
             lAddOns: [
                 // Catharsys modules as Blender addons
                 { "sName": "anycam", "sType": "MODULE" },
-                // { "sName": "anytruth", "sType": "MODULE" },
+                { "sName": "anytruth", "sType": "MODULE" },
 
                 // Add your own Blender add-on from some path to the Blender install
                 // based on the platform and machine you are working on.

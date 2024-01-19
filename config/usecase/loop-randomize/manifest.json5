@@ -28,10 +28,24 @@
                 { sId: "cam", sDTI: "camera-name:1", sForm: "value", bAddToPath: false },
                 { sId: "loop_x", sDTI: "manifest/control/loop/*:*", sForm: "file/json", bAddToPath: true },
                 { sId: "loop_y", sDTI: "manifest/control/loop/*:*", sForm: "file/json", bAddToPath: true },
-                { sId: "mod", sDTI: "blender/modify:1", sForm: "file/json", bAddToPath: false },
+                { sId: "mod", sDTI: "blender/modify:1", sForm: "file/json", bAddToPath: true },
             ],
             lDeps: []
         },
+
+        depth: {
+            sDTI: "manifest/action:1",
+            lConfigs: [
+                { 
+                    sId: "depth", 
+                    sDTI: "blender/anytruth/construct/depth:1", 
+                    sForm: "file/json", 
+                    sFolderPrefix: "AT_Depth/"
+                }
+            ],
+            lDeps: ["render"]
+        },
+
     }
 }
 

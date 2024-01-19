@@ -75,7 +75,16 @@
         // Flag whether to store the data the processing is based on. 
         // For example, for the Blender render action the modified Blender file is
         // saved just before the actual rendering is initiated.
-        bDoStoreProcessData: false
+        bDoStoreProcessData: false,
+
+        // //////////////////////////////////////////////////////////////////////////
+        // USER DEFINED VARIABLES
+        iConfigStartX: 1,
+        iConfigCountX: 2,
+
+        iConfigStartY: 1,
+        iConfigCountY: 2,
+ 
     },
 
     // The map of all actions that can be launched
@@ -93,9 +102,6 @@
             mConfig: {
                 sDTI: "/catharsys/launch/args:1.1",
 
-                // Set the top folder name in the "_render" folder.
-                sTopFolder: "blend",
-
                 // The following two parameters are only useful when processing
                 // on an job scheduling system like LSF, where multiple jobs can be run in parallel.
                 //
@@ -111,13 +117,19 @@
                 // For example, suppose there are three configurations, each with 10 frames,
                 // and iConfigGroups = 0 and iFrameGroups = 2, then there are 3*2 = 6 jobs,
                 // two jobs per configuration each rendering 5 frames.
+           }
+        },
 
-                // USER DEFINED VARIABLES
-                iConfigStartX: 1,
-                iConfigCountX: 2,
+        depth: {
+            sDTI: "/catharsys/launch/action:1.0",
+            sActionDTI: "/catharsys/action/std/blender/post-render/proc-depth:1.0",
+            mConfig: {
+                sDTI: "/catharsys/launch/args:1.1",
+                sExecFile: "exec-py",
+                iConfigGroups: 1,
+                iFrameGroups: 1,
+                iMaxLocalWorkers: 1,
 
-                iConfigStartY: 1,
-                iConfigCountY: 2,
             }
         },
     },
