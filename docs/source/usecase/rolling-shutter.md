@@ -55,7 +55,7 @@ Note that you can also generate constructed images with various rolling shutter 
 Note that Blender also has a rolling shutter rendering setting with a single parameter that uses the known movement of objects to approximate a rolling shutter effect for Blender native cameras. This method will not give correct results at depth edges or for varying reflections, but it is much faster.
 ```
 
-An example [rolling-shutter rendering configuration](https://github.com/boschresearch/image-render-workspace-examples/tree/main/config/usecase/rolling-shutter) can be found in the module [image-render-workspace-examples](https://github.com/boschresearch/image-render-workspace-examples/tree/main). The following discussion will reference this configuration.
+An example [rolling-shutter rendering configuration](https://github.com/boschresearch/image-render-workspace-examples/tree/main/config/usecase/rolling-shutter) can be found in the module [image-render-workspace-examples](https://github.com/boschresearch/image-render-workspace-examples/tree/main). This configuration will be referenced in the following description.
 
 ## Scene Preparation
 
