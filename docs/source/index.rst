@@ -34,8 +34,9 @@ This module contains example configurations for the Image Render Automation tool
 
    usecase/rolling-shutter
    license
+   back-to-main
 
-`main <../../html/index.html>`__
+.. `main <../../html/index.html>`__
 
 
 .. Indices and tables

@@ -25,23 +25,14 @@ As the scanning progresses, each line of the image is captured at a slightly dif
 The goal of the rolling shutter rendering action is to simulate a real rolling shutter as closely as possible. This is done by rendering a large number of sub-exposures at small time steps, which are combined into a final image in a post-processing step. 
 
 For example, here are some of the partial exposures. You can see that while different parts of the scene are rendered, time advances and the cube rotates on.
-<table>
-<tr>
-    <td><img src="images/rs_raw_5.jpg"></td>
-</tr>
-<tr>
-    <td><img src="images/rs_raw_4.jpg"></td>
-</tr>
-<tr>
-    <td><img src="images/rs_raw_3.jpg"></td>
-</tr>
-<tr>
-    <td><img src="images/rs_raw_2.jpg"></td>
-</tr>
-<tr>
-    <td><img src="images/rs_raw_1.jpg"></td>
-</tr>
-</table>
+
+| Separate Exposures |
+|-------|
+| ![Image 1](images/rs_raw_5.jpg) |
+| ![Image 2](images/rs_raw_4.jpg) |
+| ![Image 3](images/rs_raw_3.jpg) |
+| ![Image 4](images/rs_raw_2.jpg) |
+| ![Image 5](images/rs_raw_1.jpg) |
 
 The post-processing step then combines these partial exposures to a final image, which clearly shows the typical rolling shutter effects. The cube appears twisted because its' top part was exposed earlier than its' bottom part.
 
