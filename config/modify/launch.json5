@@ -110,6 +110,21 @@
                 // two jobs per configuration each rendering 5 frames.
             }
         },
+
+        // action to load a collection from a blender file
+        "load-blend": {
+            sDTI: "/catharsys/launch/action-alias:1.0",
+            sActionName: "render",
+            mConfig: {
+                sDTI: "/catharsys/launch/args:1.0",
+                sTopFolder: "blend",
+                sTrialFile: "trial-2",
+                bDoProcess: true,
+                bDoOverwrite: true,
+                bDoStoreProcessData: false,
+            }
+
+        }
     },
 
 }

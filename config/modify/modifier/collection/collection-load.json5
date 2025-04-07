@@ -1,0 +1,67 @@
+// <LICENSE id="CC BY 4.0">
+//
+//   Image-Render Workspace 'examples'
+//   Copyright 2022 Robert Bosch GmbH and its subsidiaries
+//   
+//   This work is licensed under the 
+//   
+//       Creative Commons Attribution 4.0 International License.
+//   
+//   To view a copy of this license, visit 
+//       http://creativecommons.org/licenses/by/4.0/ 
+//   or send a letter to 
+//       Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
+//   
+//
+// </LICENSE>
+
+// "for-each-object" modifier
+// Applies a list of modifiers to each object in a collection.
+// It makes also a dictionary available that can be accessed from the modifier configurations
+// via "${for-each-object:idx}" and "${for-each-object:name}".
+// 
+// 
+// lModifier (list(dict)): list of modifier configurations that are applied per object.
+// lObjectTypes (list(string), optional): list of objects types that are to be taken into account.
+//                                         By default all object types are allowed.
+// sObjectNamePattern (string, optional): Only objects with names that match this regular expression
+//                                         are taken into account. By default this is not applied.
+{
+    sDTI: "/catharsys/blender/modify:1.0",
+
+    sId: "${folder}/${filebasename}",
+    
+    // A program modifier allows the execution of modifiers of any type
+    // in a specific order.
+    mProgram: { lModifier: [
+        { sDTI: "/catharsys/blender/generate/in-program:1", mData: { 
+            // List of generators. 
+            "new-cln": [{
+                sDTI: "/catharsys/blender/generate/collection/load:1",
+                // The blender filename from where to load the collection.
+                // You should always load collections from external Blender files,
+                sBlenderFilename: "${path-workspace}/blend/Modify.blend",
+                // Optionally specify the meters per blender unit used in the blender file from where the collection is loaded.
+                // This is important for the correct scaling of the objects.
+                fMetersPerBlenderUnit: 1.0,
+                // Specify the set of collections to load.
+                mCollections: {
+                    // This is the name of the collection in the blender file.
+                    "Objects": {
+                        // The name of the collection in the current file.
+                        // If the collection does not exist it will be created.
+                        // You can specify a list here to define a collection hierarchy.
+                        lCollectionHierarchy: ["Elements", "Objects"],
+                        // Modifiers that are applied to the collection.
+                        // This is a list of dictionaries, where each dictionary is a modifier configuration.
+                        // You can, for example, use the "for-each-object" modifier to apply a list of modifiers to each object in the collection.
+                        // Or you can set the label of the collection here.
+                        lModifiers: []
+                    },
+                },
+            }]
+        }},
+    ]}
+}
+
+

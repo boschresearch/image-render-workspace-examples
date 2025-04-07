@@ -90,7 +90,7 @@
                         // Has to be one of: "km", "m", "mm", "um"
                         sUnit: "m",
 
-                        xValue: [0, 0, 2],
+                        xValue: [1, 2, 2],
                     }
                 ]
             }],

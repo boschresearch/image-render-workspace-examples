@@ -50,7 +50,7 @@
             // // Collection
             // "modifier/collection/object-placement_rnd-surf_v1_ex1",
             // "modifier/collection/object-placement_rnd-surf_v1_ex2",
-            "modifier/collection/object-placement_rnd-surf_v2_ex1",
+            // "modifier/collection/object-placement_rnd-surf_v2_ex1",
             // "modifier/collection/for-each-object",
             // "modifier/collection/anytruth_labeltype",
 
@@ -65,7 +65,7 @@
             // "modifier/rigidbody/ex1",
 
             // // Generator
-            // "modifier/generate/import-object",
+            "modifier/generate/import-object",
             // "modifier/generate/import-type-hierarchy",
         ],
     },
