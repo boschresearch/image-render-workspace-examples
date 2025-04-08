@@ -1,0 +1,59 @@
+// <LICENSE id="CC BY 4.0">
+//
+//   Image-Render Workspace 'examples'
+//   Copyright 2022 Robert Bosch GmbH and its subsidiaries
+//   
+//   This work is licensed under the 
+//   
+//       Creative Commons Attribution 4.0 International License.
+//   
+//   To view a copy of this license, visit 
+//       http://creativecommons.org/licenses/by/4.0/ 
+//   or send a letter to 
+//       Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
+//   
+//
+// </LICENSE>
+
+// "for-each-material" modifier
+// Applies a list of modifiers to each material of an object.
+// It makes also a dictionary available that can be accessed from the modifier configurations
+// via "${for-each-material:idx}" and "${for-each-material:name}".
+// 
+// 
+// lModifier (list(dict)): list of modifier configurations that are applied per material.
+// sMaterialNamePattern (string, optional): Only materials with names that match this regular expression
+//                                         are taken into account. By default this is not applied.
+
+{
+    sDTI: "/catharsys/blender/modify:1.0",
+
+    sId: "${folder}/${filebasename}",
+    
+    mObjects: {
+        Grid: [{
+            sDTI: "blender/modify/object/for-each-material:1.0",
+
+            // sMaterialNamePattern: "C.+",
+
+            lModifiers: [
+                {
+                    sDTI: "blender/modify/material/node-values:1.0",
+
+                    // The name or label of the node.
+                    sNode: "Scale",
+                    // Skip execution if the node is not found.
+                    bSkipIfNodeMissing: true,
+
+                    // Set the default value of the node outputs
+                    lOutputs: [
+                        // Give the name of the output and the value it should be setup to.
+                        { sName: "Value", xValue: 1 },
+                    ]
+                },
+            ]
+        }]    
+    }
+}
+
+

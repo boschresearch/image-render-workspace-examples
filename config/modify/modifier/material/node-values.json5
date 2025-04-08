@@ -21,6 +21,8 @@
     // node-values modifier elements:
     //    
     // sNode (string): The label or name of the node.
+    // bSkipIfNodeMissing (bool): If true, skip execution if the node is not found. 
+    //                              Otherwise, raise an exception. Default: false.
     // lInputs (list): List of dictionaries that define input values.
     // lOutputs (list): List of dictionaries that define output values.
     // lProperties (list): List of dictionaries that define property values.
