@@ -30,6 +30,10 @@
                 // Flag whether to keep the object's position and rotation 
                 // relative to the world origin
                 bKeepTransform: false,
+
+                // If true, ensures that the scale of the object stays the same 
+                // w.r.t. the world coordinate system, after parenting.
+                bKeepScale: false,
             }
         ]    
     }
