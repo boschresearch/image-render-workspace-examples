@@ -21,7 +21,7 @@
 
     mBlender: {
         sDTI: "/catharsys/blender:1.0",
-        sVersion: "3.6",
+        sVersion: "4.0",
 
         mSettings: {
             sDTI: "/catharsys/blender/settings:1.0",

@@ -41,6 +41,7 @@
             // "modifier/object/properties",
             // "modifier/object/action",
             // "modifier/object/enable-if_bound-box",
+            "modifier/object/interpolate-pose",
 
             // // Material
             // "modifier/material/textures-from-folder",
@@ -65,7 +66,7 @@
             // "modifier/rigidbody/ex1",
 
             // // Generator
-            "modifier/generate/import-object",
+            // "modifier/generate/import-object",
             // "modifier/generate/import-type-hierarchy",
         ],
     },
