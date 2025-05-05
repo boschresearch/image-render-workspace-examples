@@ -41,7 +41,8 @@
             // "modifier/object/properties",
             // "modifier/object/action",
             // "modifier/object/enable-if_bound-box",
-            "modifier/object/interpolate-pose",
+            // "modifier/object/interpolate-pose",
+            "modifier/object/delta-transform-proxy",
 
             // // Material
             // "modifier/material/textures-from-folder",

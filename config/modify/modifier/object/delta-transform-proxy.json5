@@ -1,0 +1,45 @@
+// <LICENSE id="CC BY 4.0">
+//
+//   Image-Render Workspace 'examples'
+//   Copyright 2022 Robert Bosch GmbH and its subsidiaries
+//   
+//   This work is licensed under the 
+//   
+//       Creative Commons Attribution 4.0 International License.
+//   
+//   To view a copy of this license, visit 
+//       http://creativecommons.org/licenses/by/4.0/ 
+//   or send a letter to 
+//       Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
+//   
+//
+// </LICENSE>
+{
+    sDTI: "/catharsys/blender/modify:1.0",
+
+    sId: "${folder}/${filebasename}",
+    
+    mObjects: {
+        Cube: [
+            {
+                sDTI: "blender/modify/object/delta-transform/proxy:1",
+
+                // The transformation is applied to the object 'Cube' in this case.
+                // The transformation that is applied to the object is the transformation
+                // that brings object 'sFrom' to object 'sTo'.
+                sFrom: "Proxy.A",
+                sTo: "Proxy.B",
+
+                // The factor determines what part of the transformation is applied to the object.
+                // 0.0 = no transformation, 1.0 = full transformation
+                // 0.5 = half transformation
+                // Values can also be larger than 1.0, which applies the transformation multiple times.
+                // Values can also be negative, which applies the transformation in the opposite direction.
+                // This is like exchanging the start and end proxies.
+                fFactor: "0.5",
+            }
+        ]    
+    }
+}
+
+
